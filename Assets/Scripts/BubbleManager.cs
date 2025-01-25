@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -20,8 +21,9 @@ public class BubbleManager : MonoBehaviour
         if (currentBubble == null) return;
 
         float minBubbleValue = MinValue;
-        currentBubble.Oxygen = Mathf.Max(currentBubble.Oxygen - decreaseRate * Time.deltaTime, minBubbleValue);
+        currentBubble.Oxygen -= decreaseRate * Time.deltaTime;
         
+        Debug.Log(currentBubble.Oxygen + "; " + minBubbleValue);
         if (currentBubble.Oxygen < minBubbleValue)
         {
             Debug.Log("Destroy");
