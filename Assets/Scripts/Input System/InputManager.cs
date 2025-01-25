@@ -57,6 +57,11 @@ public class InputManager : MonoBehaviourSingleton<InputManager>
         SwitchAction?.Invoke();
     }
 
+    public bool ControlSchemeIsMouse()
+    {
+        return CurrentControlScheme == "Keyboard&Mouse";
+    }
+
 #endif
 
     private void OnApplicationFocus(bool hasFocus)

@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class BubbleManager : MonoBehaviour
 {
-    [SerializeField] private float decreaseRate;
+    [SerializeField] private float oxygenDecreaseRate;
     [SerializeField] private Bubble currentBubble; // la bolla abitata attualmente dal player
     [SerializeField] private Bubble startingBubble;
-    [SerializeField] private float minBubbleValue;
+    [SerializeField] private float minOxygenValue;
     private WaitForSeconds _decreaseValueTime;
 
     private void Start() 
@@ -22,10 +22,10 @@ public class BubbleManager : MonoBehaviour
         {
             if(currentBubble != null)
             {
-                currentBubble.Value -= decreaseRate;
-                if(currentBubble.Value < minBubbleValue)
+                currentBubble.Oxygen -= oxygenDecreaseRate;
+                if(currentBubble.Oxygen < minOxygenValue)
                 {
-                    currentBubble.Value = minBubbleValue;
+                    currentBubble.Oxygen = minOxygenValue;
                 }
                 yield return _decreaseValueTime;
             }            
