@@ -10,6 +10,9 @@ public class MovementSpriteRotator : MonoBehaviour
 
     void RotateSprite(Vector2 movement)
     {
-        transform.localScale = new Vector3(1 * (movement.x < 0 ? -1 : 1), transform.localScale.y, transform.localScale.z);
+        if (movement.x != 0)
+        {
+            transform.localScale = new Vector3(1 * (movement.x < 0 ? -1 : 1), transform.localScale.y, transform.localScale.z);
+        }
     }
 }

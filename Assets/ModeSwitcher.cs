@@ -34,6 +34,10 @@ public class ModeSwitcher : MonoBehaviour
             newBubble.Oxygen = Mathf.Min(Player.Instance.leaveBubbleValue, baseBubble.Oxygen);
             newBubble.priority = 2;
             baseBubble.Oxygen -= Player.Instance.leaveBubbleValue;
+            if (baseBubble.Oxygen <= 0)
+            {
+                baseBubble.DestroyBubble();
+            }
             _shooting = false;
             var movement2D = GetComponent<Movement2D>();
             movement2D.enabled = !_shooting;
