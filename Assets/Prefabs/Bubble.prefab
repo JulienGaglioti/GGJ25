@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 1336573543539700863}
   - component: {fileID: 2098986203812820830}
   - component: {fileID: 3169498948379129356}
-  - component: {fileID: 2553241525648651031}
   - component: {fileID: 1959439153381653051}
-  - component: {fileID: 4460900734382257811}
   - component: {fileID: -1845289426812523049}
+  - component: {fileID: 2553241525648651031}
+  - component: {fileID: 4460900734382257811}
+  - component: {fileID: 3129655193292433441}
   m_Layer: 8
   m_Name: Bubble
   m_TagString: Bubble
@@ -90,26 +91,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2553241525648651031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6279290141050644353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ffc46555a107c479f0cd6c8b8c249c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsStationBubble: 0
-  CanMergeWithStationBubble: 0
-  priority: 1
-  TimeBeforeMergeIsEnabled: 0.8
-  value: 1
-  minValueForFade: 0
-  multiplier: 0.8
-  scaleOffset: 0
 --- !u!58 &1959439153381653051
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -146,19 +127,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 5
---- !u!114 &4460900734382257811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6279290141050644353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8a674bcd0eee7247b22a7fc86f8fb02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mergePosition: 0
 --- !u!50 &-1845289426812523049
 Rigidbody2D:
   serializedVersion: 5
@@ -186,3 +154,49 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2553241525648651031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6279290141050644353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ffc46555a107c479f0cd6c8b8c249c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsStationBubble: 0
+  CanMergeWithStationBubble: 0
+  priority: 1
+  TimeBeforeMergeIsEnabled: 0.8
+  value: 1
+  minValueForFade: 0
+  multiplier: 0.8
+  scaleOffset: 0
+--- !u!114 &4460900734382257811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6279290141050644353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a674bcd0eee7247b22a7fc86f8fb02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mergePosition: 0
+--- !u!114 &3129655193292433441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6279290141050644353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68fc2d68e6e98948b05ea83aa70d9ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubble: {fileID: 2553241525648651031}

@@ -102,7 +102,7 @@ public class Bubble : MonoBehaviour
     }
 
     public void MergeWith(Bubble otherBubble, MergePosition mergePosition = MergePosition.Midpoint, bool forced = false)
-    {
+    {        
         if ((!otherBubble.CanMerge() || !CanMerge()) && !forced) 
             return;
 
@@ -112,7 +112,7 @@ public class Bubble : MonoBehaviour
         }
 
         Oxygen += otherBubble.Oxygen;
-        Destroy(otherBubble.gameObject);
+        otherBubble.DestroyBubble();
     }
 
     public void AddForce(Vector2 direction)
@@ -124,5 +124,17 @@ public class Bubble : MonoBehaviour
     {
         yield return new WaitForSeconds(TimeBeforeMergeIsEnabled);
         CanMergeWithStationBubble = true;
+    }
+
+    public void DestroyBubble()
+    {
+        if(IsStationBubble)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
