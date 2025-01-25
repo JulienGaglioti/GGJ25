@@ -28,21 +28,35 @@ public class Bubble : MonoBehaviour
     
     [SerializeField] protected float multiplier = 1f;
     private MeshRenderer _meshRenderer;
+    private BubbleCollisionMerger _bubbleCollisionMerger;
 
     private void Awake()
     {
         _meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        _bubbleCollisionMerger = GetComponent<BubbleCollisionMerger>();
         Value = value;
     }
-
-    public void MergeWith(Bubble bubble, MergePosition mergePosition = MergePosition.Midpoint)
+    
+    public bool CanMerge()
     {
+        return _bubbleCollisionMerger.enabled;
+    }
+
+    public void SetCanMerge(bool canMerge)
+    {
+        _bubbleCollisionMerger.enabled = canMerge;
+    }
+
+    public void MergeWith(Bubble otherBubble, MergePosition mergePosition = MergePosition.Midpoint, bool forced = false)
+    {
+        if ((!otherBubble.CanMerge() || !CanMerge()) && !forced) { return; }
+
         if (mergePosition == MergePosition.Midpoint)
         {
-            transform.position = (bubble.transform.position + transform.position) / 2;
+            transform.position = (otherBubble.transform.position + transform.position) / 2;
         }
 
-        Value += bubble.Value;
-        Destroy(bubble.gameObject);
+        Value += otherBubble.Value;
+        Destroy(otherBubble.gameObject);
     }
 }
