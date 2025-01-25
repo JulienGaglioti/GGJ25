@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BubbleManager : MonoBehaviour
 {
-    [SerializeField] private float decreaseRate;
+    [SerializeField] private float oxygenDecreaseRate;
     [SerializeField] private Bubble currentBubble; // la bolla abitata attualmente dal player
     [SerializeField] private Bubble startingBubble;
     private float _reserveValue = 0.5f;
