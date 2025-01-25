@@ -24,6 +24,8 @@ public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
     
     private void Update() 
     {
+        if (!Player.Instance.GetComponent<ModeSwitcher>().IsShooting()) { return; }
+
         if(InputManager.Instance.ControlSchemeIsMouse())
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -52,6 +54,7 @@ public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
 
     private void ShootBubble()
     {
+        if (!Player.Instance.GetComponent<ModeSwitcher>().IsShooting()) { return; }
         Bubble bubbleProjectile = Instantiate(bubblePrefab, shootPoint.position, transform.rotation);
         bubbleProjectile.Oxygen = OxygenCostPerBubble;
         var shootdirection = GetShootDirection();
