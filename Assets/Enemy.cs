@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public abstract class Enemy : MonoBehaviour
 {
+    public int DifficultyValue;
+    public int FirstAppearance;
     private GameObject _playerObj;
     protected Rigidbody2D Rigidbody2D;
     private void Awake()
