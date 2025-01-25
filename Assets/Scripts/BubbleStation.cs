@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class BubbleStation : MonoBehaviour
@@ -7,6 +8,8 @@ public class BubbleStation : MonoBehaviour
     public float OxygenCostPerBubble;
     [SerializeField] private Bubble bubbleScript;
     [SerializeField] private Bubble bubblePrefab;
+    [SerializeField] private Transform cannonTransform;
+    [SerializeField] private Transform shootPoint;
 
 
     private void Start() 
@@ -18,10 +21,38 @@ public class BubbleStation : MonoBehaviour
     {
         InputManager.Instance.AttackAction -= ShootBubble;
     }
+    
+    private void Update() 
+    {
+        if(InputManager.Instance.ControlSchemeIsMouse())
+        {
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPosition.z = transform.position.z;
+            Vector3 directionToMouse = mouseWorldPosition - transform.position;
+
+            Vector2 aimDirection = directionToMouse.normalized;
+
+            if(aimDirection.sqrMagnitude > 0)
+            {
+                float angle = Mathf.Atan2(aimDirection.x, aimDirection.y) * Mathf.Rad2Deg;
+                angle = Mathf.Clamp(angle, -90f, 90f);
+                cannonTransform.localRotation = Quaternion.Euler(0, angle, 0);
+            }  
+        }
+        else
+        {
+            if(InputManager.Instance.LookInput.sqrMagnitude > 0)
+            {
+                float angle = Mathf.Atan2(InputManager.Instance.LookInput.x, InputManager.Instance.LookInput.y) * Mathf.Rad2Deg;
+                angle = Mathf.Clamp(angle, -90f, 90f);
+                cannonTransform.localRotation = Quaternion.Euler(0, angle, 0);
+            }            
+        }
+    }
 
     private void ShootBubble()
     {
-        Bubble bubbleProjectile = Instantiate(bubblePrefab, transform.position, transform.rotation);
+        Bubble bubbleProjectile = Instantiate(bubblePrefab, shootPoint.position, transform.rotation);
         Vector2 shootdirection;
         if(InputManager.Instance.ControlSchemeIsMouse())
         {
