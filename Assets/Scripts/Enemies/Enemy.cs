@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
@@ -9,6 +9,9 @@ public abstract class Enemy : MonoBehaviour
     public int DifficultyValue;
     public int FirstAppearance;
     private GameObject _playerObj;
+    [SerializeField] protected float speed = 1;
+    [SerializeField] protected float minSpeedVariation = 0.85f;
+    [SerializeField] protected float maxSpeedVariation = 1.15f;
     protected Rigidbody2D Rigidbody2D;
     private void Awake()
     {
@@ -16,6 +19,7 @@ public abstract class Enemy : MonoBehaviour
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Rigidbody2D.gravityScale = 0;
         Rigidbody2D.freezeRotation = true;
+        RandomizeSpeed();
     }
 
     private void Update()
@@ -24,6 +28,11 @@ public abstract class Enemy : MonoBehaviour
         {
             MoveToTarget(_playerObj);
         }
+    }
+
+    public void RandomizeSpeed()
+    {
+        speed *= Random.Range(minSpeedVariation, maxSpeedVariation);
     }
 
     protected abstract void MoveToTarget(GameObject target);
