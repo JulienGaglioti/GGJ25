@@ -15,13 +15,13 @@ public class Bubble : MonoBehaviour
     private static readonly int RadiusProperty = Shader.PropertyToID("_Radius");
 
     [SerializeField] private float value;
-    protected float Value
+    public float Value
     {
         get => value;
-        private set
+        set
         {
             this.value = value;
-            transform.localScale = Vector3.one * (float)Math.Max(0, Math.Log(Math.Max(0, this.value) + 1) * multiplier);
+            transform.localScale = Vector3.one * (float)Math.Max(0, Math.Log(Math.Max(0, this.value/10) + 1) * multiplier);
             _meshRenderer.material.SetFloat(RadiusProperty, transform.localScale.x / 2);
         }
     }
