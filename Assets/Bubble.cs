@@ -11,8 +11,11 @@ public class Bubble : MonoBehaviour
         Midpoint,
         SelfOrigin
     }
+
+    [field: SerializeField] public float MinValue { get; set; }
     
     private static readonly int RadiusProperty = Shader.PropertyToID("_Radius");
+    private static readonly int BorderColor = Shader.PropertyToID("_RingColor");
 
     [SerializeField] private float value;
     public float Value
@@ -25,7 +28,22 @@ public class Bubble : MonoBehaviour
             _meshRenderer.material.SetFloat(RadiusProperty, transform.localScale.x / 2);
         }
     }
-    
+
+    private float _borderAlpha = 0;
+
+    public float BorderAlpha
+    {
+        get => _borderAlpha;
+        set
+        {
+            _borderAlpha = value;
+            Color color = _meshRenderer.material.GetColor(BorderColor);
+            color.a = _borderAlpha;
+            _meshRenderer.material.SetColor(BorderColor, color);
+            _borderAlpha = value;
+        }
+    }
+
     [SerializeField] protected float multiplier = 1f;
     private MeshRenderer _meshRenderer;
     private BubbleCollisionMerger _bubbleCollisionMerger;

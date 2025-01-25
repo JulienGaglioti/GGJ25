@@ -6,29 +6,43 @@ public class BubbleManager : MonoBehaviour
     [SerializeField] private float decreaseRate;
     [SerializeField] private Bubble currentBubble; // la bolla abitata attualmente dal player
     [SerializeField] private Bubble startingBubble;
-    [SerializeField] private float minBubbleValue;
-    private WaitForSeconds _decreaseValueTime;
+    private float _reserveValue = 0.5f;
 
-    private void Start() 
+    private void Start()
     {
         currentBubble = startingBubble;
-        _decreaseValueTime = new WaitForSeconds(0.1f);
-        StartCoroutine(DecreaseValueCoroutine());
     }
 
-    private IEnumerator DecreaseValueCoroutine()
+    private void Update()
     {
-        while(true)
+        if (currentBubble == null) return;
+
+        float minBubbleValue = currentBubble.MinValue;
+        currentBubble.Value = Mathf.Max(currentBubble.Value - decreaseRate * Time.deltaTime, minBubbleValue);
+        
+        if (currentBubble.Value < minBubbleValue)
         {
-            if(currentBubble != null)
-            {
-                currentBubble.Value -= decreaseRate;
-                if(currentBubble.Value < minBubbleValue)
-                {
-                    currentBubble.Value = minBubbleValue;
-                }
-                yield return _decreaseValueTime;
-            }            
+            Destroy(currentBubble.gameObject);
+            return;
         }
+        
+        if (currentBubble.Value <= minBubbleValue + _reserveValue)
+        {
+            currentBubble.BorderAlpha = (currentBubble.Value - minBubbleValue) / _reserveValue;
+        }
+        else
+        {
+            currentBubble.BorderAlpha = 1;
+        }
+    }
+
+    public void SetCurrentBubble(Bubble bubble)
+    {
+        currentBubble = bubble;
+    }
+
+    public Bubble GetCurrentBubble()
+    {
+        return currentBubble;
     }
 }
