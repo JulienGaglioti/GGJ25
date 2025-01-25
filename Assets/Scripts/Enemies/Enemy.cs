@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public abstract class Enemy : MonoBehaviour
 {
+    public EnemyType EnemyType;
+    public int DifficultyValue;
+    public int FirstAppearance;
     private GameObject _playerObj;
     protected Rigidbody2D Rigidbody2D;
     private void Awake()
@@ -24,4 +27,11 @@ public abstract class Enemy : MonoBehaviour
     }
 
     protected abstract void MoveToTarget(GameObject target);
+}
+
+public enum EnemyType
+{
+    Walker,
+    Swimmer,
+    Shooter
 }
