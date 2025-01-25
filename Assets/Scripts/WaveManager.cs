@@ -8,7 +8,9 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float timeBetweenTwoWaves = 5f;
     [SerializeField] private float timeBetweenEnemiesInWave = 1f;
     [SerializeField] private List<Enemy> allEnemies;
-    [SerializeField] private Transform _spawnPointTest;
+    [SerializeField] private List<Transform> _walkerSpawnPositions;
+    [SerializeField] private List<Transform> _swimmerSpawnPositions;
+    [SerializeField] private List<Transform> _shooterSpawnPositions;
     private List<Enemy> _enemies = new();
     private List<int> _enemyDifficultyValues = new();
     private int _currentDifficultyValue;
@@ -92,7 +94,7 @@ public class WaveManager : MonoBehaviour
         // returns difficulty value
         // print("spawn enemy");
         Enemy randomEnemy = _enemies[Random.Range(0, _enemies.Count)];
-        Instantiate(randomEnemy, _spawnPointTest.position, randomEnemy.transform.rotation);
+        Instantiate(randomEnemy, GetSpawnPosition(randomEnemy.EnemyType), randomEnemy.transform.rotation);
 
         if(_remainingDifficultyInWave < randomEnemy.DifficultyValue)
         {
@@ -106,4 +108,26 @@ public class WaveManager : MonoBehaviour
         // }
         return randomEnemy.DifficultyValue;
     }
+
+    private Vector3 GetSpawnPosition(EnemyType enemy)
+    {
+        switch (enemy)
+        {
+            case EnemyType.Walker:
+                return _walkerSpawnPositions[Random.Range(0, _walkerSpawnPositions.Count)].position 
+                + Vector3.right * Random.Range(-1.5f, 1.5f);
+            case EnemyType.Swimmer:
+                return _swimmerSpawnPositions[Random.Range(0, _swimmerSpawnPositions.Count)].position 
+                + Vector3.right * Random.Range(-2.5f, 2.5f) 
+                + Vector3.up * Random.Range(-1.5f, 1.5f);
+            case EnemyType.Shooter:
+                return _shooterSpawnPositions[Random.Range(0, _shooterSpawnPositions.Count)].position 
+                + Vector3.right * Random.Range(-2.5f, 2.5f) 
+                + Vector3.up * Random.Range(-1.5f, 1.5f);
+        }
+
+        return _walkerSpawnPositions[Random.Range(0, _walkerSpawnPositions.Count)].position 
+                + Vector3.right * Random.Range(-1.5f, 1.5f);
+    }
 }
+
