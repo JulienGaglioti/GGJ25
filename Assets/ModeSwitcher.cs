@@ -52,4 +52,9 @@ public class ModeSwitcher : MonoBehaviour
             transform.position = station.transform.position;
         }
     }
+
+    public bool IsShooting()
+    {
+        return _shooting;
+    }
 }
