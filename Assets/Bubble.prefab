@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3169498948379129356}
   - component: {fileID: 2553241525648651031}
   - component: {fileID: 1959439153381653051}
+  - component: {fileID: 4460900734382257811}
   m_Layer: 0
   m_Name: Bubble
-  m_TagString: Untagged
+  m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6279290141050644353}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -100,7 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ffc46555a107c479f0cd6c8b8c249c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
   multiplier: 1
 --- !u!58 &1959439153381653051
 CircleCollider2D:
@@ -138,3 +138,15 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 5
+--- !u!114 &4460900734382257811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6279290141050644353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a674bcd0eee7247b22a7fc86f8fb02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
