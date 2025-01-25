@@ -26,7 +26,7 @@ public class Bubble : MonoBehaviour
         set
         {
             this.value = value;
-            transform.localScale = Vector3.one * (float)Math.Max(0, Math.Log(Math.Max(0, this.value/10f) + 1) * multiplier);
+            transform.localScale = Vector3.one * ((float)Math.Max(0, Math.Log(Math.Max(0, this.value/10f) + 1) * multiplier) + minSize);
             _meshRenderer.material.SetFloat(RadiusProperty, transform.localScale.x / 2);
         }
     }
@@ -47,6 +47,7 @@ public class Bubble : MonoBehaviour
     }
 
     [SerializeField] protected float multiplier = 1f;
+    [SerializeField] protected float minSize = 0f;
     private Rigidbody2D _rigidBody;
     private MeshRenderer _meshRenderer;
     private BubbleCollisionMerger _bubbleCollisionMerger;

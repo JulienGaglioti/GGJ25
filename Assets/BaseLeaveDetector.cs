@@ -12,35 +12,33 @@ public class BaseLeaveDetector : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log(other.name + " gameobject exit");
         if (ColliderIsPlayer(other))
         {
-            Debug.Log("Player exit");
             var bubbleManager = other.GetComponent<BubbleManager>();
             var newBubbleObj = Instantiate(bubblePrefab, other.transform);
             var newBubble = newBubbleObj.GetComponent<Bubble>();
+            var newBubbleCollisionMerger = newBubbleObj.GetComponent<BubbleCollisionMerger>();
+            newBubbleCollisionMerger.mergePosition = Bubble.MergePosition.SelfOrigin;
             newBubble.SetCanMerge(false);
             var baseBubble = transform.parent.GetComponent<Bubble>();
             bubbleManager.SetCurrentBubble(newBubble);
             newBubbleObj.transform.position = other.transform.position;
             Destroy(newBubbleObj.GetComponent<Rigidbody2D>());
             newBubbleObj.layer = LayerMask.NameToLayer("PlayerBubble");
-            newBubble.Oxygen = leaveBubbleValue;
+            newBubble.Oxygen = Math.Min(leaveBubbleValue, baseBubble.Oxygen);
+            newBubble.priority = 2;
             baseBubble.Oxygen -= leaveBubbleValue;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.name + " gameobject enter");
         if (ColliderIsPlayer(other))
         {
-            Debug.Log("Player enter");
             var bubbleManager = other.GetComponent<BubbleManager>();
             var otherBubble = bubbleManager.GetCurrentBubble();
             var baseBubble = transform.parent.GetComponent<Bubble>();
             if (otherBubble == baseBubble) return;
-            Debug.Log("Player enter 2");
             bubbleManager.SetCurrentBubble(baseBubble);
             Destroy(otherBubble.gameObject);
             baseBubble.Oxygen += otherBubble.Oxygen;
