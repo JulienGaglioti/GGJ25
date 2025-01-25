@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BubbleManager : MonoBehaviour
 {
-    [SerializeField] private float oxygenDecreaseRate;
     [SerializeField] private Bubble currentBubble; // la bolla abitata attualmente dal player
     [SerializeField] private Bubble startingBubble;
-    private float _reserveValue = 0.5f;
+    [SerializeField] private float reserveValue = 0.5f;
+    [SerializeField] private float decreaseRate = 0.5f;
+    [field: SerializeField] public float MinValue { get; set; }
 
     private void Start()
     {
@@ -17,18 +19,19 @@ public class BubbleManager : MonoBehaviour
     {
         if (currentBubble == null) return;
 
-        float minBubbleValue = currentBubble.MinValue;
-        currentBubble.Value = Mathf.Max(currentBubble.Value - decreaseRate * Time.deltaTime, minBubbleValue);
+        float minBubbleValue = MinValue;
+        currentBubble.Oxygen = Mathf.Max(currentBubble.Oxygen - decreaseRate * Time.deltaTime, minBubbleValue);
         
-        if (currentBubble.Value < minBubbleValue)
+        if (currentBubble.Oxygen < minBubbleValue)
         {
+            Debug.Log("Destroy");
             Destroy(currentBubble.gameObject);
             return;
         }
         
-        if (currentBubble.Value <= minBubbleValue + _reserveValue)
+        if (currentBubble.Oxygen <= minBubbleValue + reserveValue)
         {
-            currentBubble.BorderAlpha = (currentBubble.Value - minBubbleValue) / _reserveValue;
+            currentBubble.BorderAlpha = (currentBubble.Oxygen - minBubbleValue) / reserveValue;
         }
         else
         {

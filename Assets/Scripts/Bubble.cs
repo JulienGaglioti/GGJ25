@@ -15,8 +15,6 @@ public class Bubble : MonoBehaviour
         Midpoint,
         SelfOrigin
     }
-
-    [field: SerializeField] public float MinValue { get; set; }
     
     private static readonly int RadiusProperty = Shader.PropertyToID("_Radius");
     private static readonly int BorderColor = Shader.PropertyToID("_RingColor");
