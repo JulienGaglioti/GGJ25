@@ -16,7 +16,8 @@ public class ModeSwitcher : MonoBehaviour
     {
         if (_shooting)
         {
-            transform.position = GameObject.FindGameObjectWithTag("Cannon")?.transform.position ?? transform.position;
+            var transformPosition = GameObject.FindGameObjectWithTag("Cannon")?.transform.position ?? transform.position;
+            transform.position = new Vector3(transformPosition.x, transformPosition.y, transform.position.z);
             var bubbleManager = GetComponent<BubbleManager>();
             var newBubbleObj = Instantiate(bubblePrefab, transform);
             var newBubble = newBubbleObj.GetComponent<Bubble>();
@@ -27,7 +28,7 @@ public class ModeSwitcher : MonoBehaviour
             newBubble.multiplier = 0.5f;
             var baseBubble = BubbleStation.Instance.GetComponent<Bubble>();
             bubbleManager.SetCurrentBubble(newBubble);
-            newBubbleObj.transform.position = transform.position;
+            newBubbleObj.transform.localPosition = new Vector3(0, 0, 1);
             Destroy(newBubbleObj.GetComponent<Rigidbody2D>());
             newBubbleObj.layer = LayerMask.NameToLayer("PlayerBubble");
             newBubble.Oxygen = Mathf.Min(Player.Instance.leaveBubbleValue, baseBubble.Oxygen);
@@ -49,7 +50,7 @@ public class ModeSwitcher : MonoBehaviour
             var movement2D = GetComponent<Movement2D>();
             movement2D.Reset();
             movement2D.enabled = !_shooting;
-            transform.position = station.transform.position;
+            transform.position = new Vector3(station.transform.position.x, station.transform.position.y, transform.position.z);
         }
     }
 
