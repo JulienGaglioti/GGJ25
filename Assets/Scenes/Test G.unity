@@ -182,7 +182,7 @@ MonoBehaviour:
   MoveInput: {x: 0, y: 0}
   LookInput: {x: 0, y: 0}
   MousePosition: {x: 0, y: 0}
-  CursorLocked: 0
+  CursorLocked: 1
   CursorInputForLook: 1
 --- !u!4 &101317983
 Transform:
@@ -712,7 +712,7 @@ MonoBehaviour:
   startingBubble: {fileID: 429838139}
   reserveValue: 0.5
   decreaseRate: 0.1
-  <MinValue>k__BackingField: 0
+  <MinValue>k__BackingField: 2
 --- !u!1 &1267532725
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,20 +967,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4954470682633559771, guid: 5b469620997c2a44082a220d01158bd3, type: 3}
-      propertyPath: ShootForce
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: -4954470682633559771, guid: 5b469620997c2a44082a220d01158bd3, type: 3}
       propertyPath: bubbleScript
       value: 
       objectReference: {fileID: 429838139}
-    - target: {fileID: -4954470682633559771, guid: 5b469620997c2a44082a220d01158bd3, type: 3}
-      propertyPath: OxygenCostPerBubble
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 278360389139915587, guid: 5b469620997c2a44082a220d01158bd3, type: 3}
       propertyPath: value
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 278360389139915587, guid: 5b469620997c2a44082a220d01158bd3, type: 3}
+      propertyPath: minScale
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 278360389139915587, guid: 5b469620997c2a44082a220d01158bd3, type: 3}
       propertyPath: priority
@@ -988,7 +984,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 278360389139915587, guid: 5b469620997c2a44082a220d01158bd3, type: 3}
       propertyPath: multiplier
-      value: 1
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 278360389139915587, guid: 5b469620997c2a44082a220d01158bd3, type: 3}
+      propertyPath: scaleOffset
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 278360389139915587, guid: 5b469620997c2a44082a220d01158bd3, type: 3}
       propertyPath: <MinValue>k__BackingField
