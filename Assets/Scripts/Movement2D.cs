@@ -6,10 +6,14 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement2D : MonoBehaviour
 {
-    [Serializable] public class MoveEvent : UnityEvent<Vector2> {}
+    [Serializable]
+    public class MoveEvent : UnityEvent<Vector2>
+    {
+    }
 
-    [Header("Movement Settings")]
-    [SerializeField] private float maxSpeed = 2f;
+    [Header("Movement Settings")] [SerializeField]
+    private float maxSpeed = 2f;
+
     [SerializeField] private float acceleration = 4f;
     [SerializeField] private float deceleration = 4f;
 
@@ -64,5 +68,22 @@ public class Movement2D : MonoBehaviour
         Rigidbody.linearVelocity = _currentVelocity;
 
         OnMove.Invoke(_currentVelocity);
+    }
+
+    public void Reset()
+    {
+        _currentVelocity = Vector3.zero;
+        _targetVelocity = Vector3.zero;
+        Rigidbody.linearVelocity = _currentVelocity;
+    }
+
+    public void SetTargetVelocity(Vector3 velocity)
+    {
+        _targetVelocity = velocity;
+    }
+
+    public void SetVelocity(Vector3 velocity)
+    {
+        _currentVelocity = velocity;
     }
 }

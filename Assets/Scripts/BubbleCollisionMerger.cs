@@ -24,9 +24,18 @@ public class BubbleCollisionMerger : MonoBehaviour
     //     }
     // }
 
-    private void OnTriggerStay2D(Collider2D other) 
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (!other.gameObject.CompareTag("Bubble")) return;
+        if ((other.gameObject.layer == LayerMask.NameToLayer("PlayerBubble") &&
+             gameObject.layer == LayerMask.NameToLayer("BaseBubble")) ||
+            (gameObject.layer == LayerMask.NameToLayer("PlayerBubble") &&
+             other.gameObject.layer == LayerMask.NameToLayer("BaseBubble")))
+        {
+            return;
+        }
+        
+        if (!other.gameObject.CompareTag("Bubble"))
+                return;
 
         var bubble = GetComponent<Bubble>();
         var otherBubble = other.gameObject.GetComponent<Bubble>();
@@ -51,7 +60,7 @@ public class BubbleCollisionMerger : MonoBehaviour
             {
                 bubble.MergeWith(otherBubble, mergePosition);
             }
-        }  
+        }
     }
 
     // private void OnTriggerEnter2D(Collider2D other) 

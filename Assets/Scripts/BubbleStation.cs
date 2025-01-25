@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class BubbleStation : MonoBehaviour
+public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
 {
     public float ShootForce;
     public float OxygenCostPerBubble;
@@ -53,6 +53,15 @@ public class BubbleStation : MonoBehaviour
     private void ShootBubble()
     {
         Bubble bubbleProjectile = Instantiate(bubblePrefab, shootPoint.position, transform.rotation);
+        bubbleProjectile.Oxygen = OxygenCostPerBubble;
+        var shootdirection = GetShootDirection();
+        bubbleProjectile.AddForce(shootdirection * ShootForce);
+
+        bubbleScript.Oxygen -= OxygenCostPerBubble;
+    }
+
+    public Vector2 GetShootDirection()
+    {
         Vector2 shootdirection;
         if(InputManager.Instance.ControlSchemeIsMouse())
         {
@@ -66,8 +75,7 @@ public class BubbleStation : MonoBehaviour
         {
             shootdirection = InputManager.Instance.LookInput;
         }
-        bubbleProjectile.AddForce(shootdirection * ShootForce);
 
-        bubbleScript.Oxygen -= OxygenCostPerBubble;
+        return shootdirection;
     }
 }

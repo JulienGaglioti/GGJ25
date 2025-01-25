@@ -107,7 +107,9 @@ MonoBehaviour:
   priority: 1
   TimeBeforeMergeIsEnabled: 0.8
   value: 1
+  minValueForFade: 0
   multiplier: 0.8
+  scaleOffset: 0
 --- !u!58 &1959439153381653051
 CircleCollider2D:
   m_ObjectHideFlags: 0
