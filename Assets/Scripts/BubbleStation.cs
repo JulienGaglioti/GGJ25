@@ -4,8 +4,10 @@ using UnityEngine;
 public class BubbleStation : MonoBehaviour
 {
     public float ShootForce;
+    public float OxygenCostPerBubble;
     [SerializeField] private Bubble bubbleScript;
     [SerializeField] private Bubble bubblePrefab;
+
 
     private void Start() 
     {
@@ -23,13 +25,18 @@ public class BubbleStation : MonoBehaviour
         Vector2 shootdirection;
         if(InputManager.Instance.ControlSchemeIsMouse())
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(InputManager.Instance.MousePosition);
-            shootdirection = (mousePosition - transform.position).normalized;
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPosition.z = transform.position.z;
+            Vector3 directionToMouse = mouseWorldPosition - transform.position;
+
+            shootdirection = directionToMouse.normalized;
         }
         else
         {
             shootdirection = InputManager.Instance.LookInput;
         }
         bubbleProjectile.AddForce(shootdirection * ShootForce);
+
+        bubbleScript.Oxygen -= OxygenCostPerBubble;
     }
 }

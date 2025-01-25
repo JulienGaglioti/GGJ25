@@ -23,7 +23,7 @@ public class BubbleManager : MonoBehaviour
         float minBubbleValue = MinValue;
         currentBubble.Oxygen -= decreaseRate * Time.deltaTime;
         
-        Debug.Log(currentBubble.Oxygen + "; " + minBubbleValue);
+        // Debug.Log(currentBubble.Oxygen + "; " + minBubbleValue);
         if (currentBubble.Oxygen < minBubbleValue)
         {
             Debug.Log("Destroy");

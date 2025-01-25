@@ -64,17 +64,9 @@ public class Bubble : MonoBehaviour
         }
     }
     
-    public bool CanMerge(Bubble askingBubble)
+    public bool CanMerge()
     {
-        if(IsStationBubble)
-        {
-            return _bubbleCollisionMerger.enabled && askingBubble.CanMergeWithStationBubble;
-        }
-        else
-        {
-            return _bubbleCollisionMerger.enabled;
-        }
-        // return _bubbleCollisionMerger.enabled;
+        return _bubbleCollisionMerger.enabled;
     }
 
     public void SetCanMerge(bool canMerge)
@@ -84,7 +76,9 @@ public class Bubble : MonoBehaviour
 
     public void MergeWith(Bubble otherBubble, MergePosition mergePosition = MergePosition.Midpoint, bool forced = false)
     {
-        if ((!otherBubble.CanMerge(this) || !CanMerge(this)) && !forced) { return; }
+        if ((!otherBubble.CanMerge() || !CanMerge()) && !forced) { return; }
+
+        
 
         if (mergePosition == MergePosition.Midpoint)
         {

@@ -24,15 +24,26 @@ public class BubbleCollisionMerger : MonoBehaviour
     //     }
     // }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerStay2D(Collider2D other) 
     {
         if (!other.gameObject.CompareTag("Bubble")) return;
 
         var bubble = GetComponent<Bubble>();
         var otherBubble = other.gameObject.GetComponent<Bubble>();
+        if(bubble.IsStationBubble && !otherBubble.CanMergeWithStationBubble)
+        {
+            return;
+        }
+
+        if(otherBubble.IsStationBubble && !bubble.CanMergeWithStationBubble)
+        {
+            return;
+        }
+
+
         if (bubble.priority > otherBubble.priority)
         {
-            bubble.MergeWith(otherBubble);
+            bubble.MergeWith(otherBubble, mergePosition);
         }
         else if (bubble.priority == otherBubble.priority)
         {
@@ -40,6 +51,25 @@ public class BubbleCollisionMerger : MonoBehaviour
             {
                 bubble.MergeWith(otherBubble, mergePosition);
             }
-        }        
+        }  
     }
+
+    // private void OnTriggerEnter2D(Collider2D other) 
+    // {
+    //     if (!other.gameObject.CompareTag("Bubble")) return;
+
+    //     var bubble = GetComponent<Bubble>();
+    //     var otherBubble = other.gameObject.GetComponent<Bubble>();
+    //     if (bubble.priority > otherBubble.priority)
+    //     {
+    //         bubble.MergeWith(otherBubble);
+    //     }
+    //     else if (bubble.priority == otherBubble.priority)
+    //     {
+    //         if (bubble.GetInstanceID() > otherBubble.GetInstanceID())
+    //         {
+    //             bubble.MergeWith(otherBubble, mergePosition);
+    //         }
+    //     }        
+    // }
 }

@@ -105,8 +105,8 @@ MonoBehaviour:
   IsStationBubble: 0
   CanMergeWithStationBubble: 0
   priority: 1
+  TimeBeforeMergeIsEnabled: 0.8
   value: 1
-  <MinValue>k__BackingField: 2
   multiplier: 0.8
 --- !u!58 &1959439153381653051
 CircleCollider2D:
@@ -172,7 +172,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0.3
   m_AngularDamping: 0.05
-  m_GravityScale: 0.2
+  m_GravityScale: 0.04
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
