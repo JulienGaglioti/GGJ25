@@ -162,9 +162,9 @@ public class Bubble : MonoBehaviour
         if(IsStationBubble)
         {
             gameObject.SetActive(false);
+            Oxygen = 0;
             var bubbleManager = Player.Instance.GetComponent<BubbleManager>();
             var currentBubble = bubbleManager.GetCurrentBubble();
-            currentBubble.Oxygen = 0;
             if (currentBubble == this)
             {
                 bubbleManager.SetCurrentBubble(null);
