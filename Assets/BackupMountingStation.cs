@@ -8,7 +8,7 @@ public class BackupMountingStation : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var modeSwitcher = Player.Instance.GetComponent<ModeSwitcher>();
-            if (modeSwitcher.IsShooting())
+            if (!modeSwitcher.IsShooting())
             {
                 modeSwitcher.Mount();
             }
