@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38154cce428af43a66c17570089552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Source: {fileID: 0}
 --- !u!1 &1810296087334415963
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38154cce428af43a66c17570089552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Source: {fileID: 0}
 --- !u!1 &4041112050134018868
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +332,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 421ef38798f7be246b508c3a47413871, type: 3}
   m_Resource: {fileID: 8300000, guid: 421ef38798f7be246b508c3a47413871, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -426,6 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38154cce428af43a66c17570089552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Source: {fileID: 0}
 --- !u!1 &4869094823315380102
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadea208c535cad4683bb9dd4a1db29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultFadeDuration: 3
   MusicSources:
   - {fileID: 4292946455396514638}
   - {fileID: 1362687356188334870}
@@ -620,6 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38154cce428af43a66c17570089552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Source: {fileID: 0}
 --- !u!1 &8196488604100896203
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38154cce428af43a66c17570089552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Source: {fileID: 0}
 --- !u!1 &8687188965709576817
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38154cce428af43a66c17570089552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Source: {fileID: 0}
 --- !u!1 &8729069201932199180
 GameObject:
   m_ObjectHideFlags: 0

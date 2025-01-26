@@ -1115,29 +1115,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 768255803292278518, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
-      propertyPath: m_Volume
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2949674350695330692, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
-      propertyPath: m_Volume
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3773860793485318882, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
-      propertyPath: m_Volume
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4869094823315380102, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
       propertyPath: m_Name
       value: Audio Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5289024683485168834, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
-      propertyPath: m_Volume
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6086871289531869376, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
-      propertyPath: m_Volume
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159939761335689898, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1177,10 +1157,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8159939761335689898, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8744195736373234935, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
-      propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
