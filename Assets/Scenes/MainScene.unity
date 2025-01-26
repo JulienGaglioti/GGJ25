@@ -2650,6 +2650,7 @@ GameObject:
   - component: {fileID: 520662515}
   - component: {fileID: 520662518}
   - component: {fileID: 520662517}
+  - component: {fileID: 520662519}
   m_Layer: 0
   m_Name: wheel
   m_TagString: Untagged
@@ -2775,6 +2776,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabc9e401d97c0743b62f687b2de0679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &520662519
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520662514}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ab9d31b95f49954cadbab025a75804a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &579891937
 GameObject:
   m_ObjectHideFlags: 0
@@ -4924,7 +4947,7 @@ Tilemap:
       - {fileID: -982137655, guid: de3bb4953351bc449832503a3c6b9d5b, type: 3}
       - {fileID: -1538038307, guid: de3bb4953351bc449832503a3c6b9d5b, type: 3}
       - {fileID: -471329131, guid: de3bb4953351bc449832503a3c6b9d5b, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -6, y: 4, z: 0}
@@ -5966,26 +5989,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1449514696 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6073280750218506996, guid: 2575101de4316d949afebc1f09037fad, type: 3}
-  m_PrefabInstance: {fileID: 6310265466614692835}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1449514707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1449514696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5d9e16b937208741b5c1d0e47553041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wheel: {fileID: 520662514}
-  staticAnimation: {fileID: 9100000, guid: 0fb0a8a162a6a494ab376fcf8643afda, type: 2}
-  steerAnimation: {fileID: 9100000, guid: 2ab9d31b95f49954cadbab025a75804a, type: 2}
 --- !u!1 &1484392165
 GameObject:
   m_ObjectHideFlags: 0
@@ -7330,18 +7333,14 @@ PrefabInstance:
       propertyPath: startingBubble
       value: 
       objectReference: {fileID: 429838139}
+    - target: {fileID: 2354611982815690560, guid: 2575101de4316d949afebc1f09037fad, type: 3}
+      propertyPath: wheel
+      value: 
+      objectReference: {fileID: 520662514}
     - target: {fileID: 2650903959011013840, guid: 2575101de4316d949afebc1f09037fad, type: 3}
       propertyPath: ScoreText
       value: 
       objectReference: {fileID: 512149028}
-    - target: {fileID: 2650903959011013840, guid: 2575101de4316d949afebc1f09037fad, type: 3}
-      propertyPath: swimAnimation
-      value: 
-      objectReference: {fileID: 9100000, guid: 6e3eed54bbe5d7e46aa95b99a2330fe7, type: 2}
-    - target: {fileID: 2650903959011013840, guid: 2575101de4316d949afebc1f09037fad, type: 3}
-      propertyPath: steerAnimation
-      value: 
-      objectReference: {fileID: 9100000, guid: 30de9b2046560ca4c96ad1abe4a086fa, type: 2}
     - target: {fileID: 6073280750218506996, guid: 2575101de4316d949afebc1f09037fad, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7390,17 +7389,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9046863160361969738, guid: 2575101de4316d949afebc1f09037fad, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 30de9b2046560ca4c96ad1abe4a086fa, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6073280750218506996, guid: 2575101de4316d949afebc1f09037fad, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1449514707}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2575101de4316d949afebc1f09037fad, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

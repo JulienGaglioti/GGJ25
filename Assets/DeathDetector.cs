@@ -19,6 +19,8 @@ public class DeathDetector : MonoBehaviour
             gameObject.SetActive(false);
             MyAudioManager.Instance?.PlayClip(deathClips);
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
+            GetComponent<WheelAnimator>().StartStaticAnimation();
+            Destroy(this);
         }
     }
 }
