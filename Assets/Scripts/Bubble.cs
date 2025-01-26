@@ -162,6 +162,11 @@ public class Bubble : MonoBehaviour
         if(IsStationBubble)
         {
             gameObject.SetActive(false);
+            var bubbleManager = Player.Instance.GetComponent<BubbleManager>();
+            if (bubbleManager.GetCurrentBubble() == this)
+            {
+                bubbleManager.SetCurrentBubble(null);
+            }
         }
         else
         {
