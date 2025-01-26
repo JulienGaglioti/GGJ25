@@ -30,7 +30,7 @@ public class Bubble : MonoBehaviour
     private MeshRenderer _meshRenderer;
     private BubbleCollisionMerger _bubbleCollisionMerger;
     private bool _isSpawnedBubble;
-    private float _spawnedBubbleDecreateRate;
+    private float _spawnedBubbleDecreaseRate;
     private float _minValue;
     private bool _canFade = false;
 
@@ -77,7 +77,7 @@ public class Bubble : MonoBehaviour
     {
         if (!_isSpawnedBubble) return;
 
-        Oxygen -= _spawnedBubbleDecreateRate * Time.deltaTime;
+        Oxygen -= _spawnedBubbleDecreaseRate * Time.deltaTime;
 
         if (_canFade && Oxygen < _minValue)
         {
@@ -88,7 +88,7 @@ public class Bubble : MonoBehaviour
     public void InitializeSpawnedBubble(float decreaseRate, float minValue)
     {
         _isSpawnedBubble = true;
-        _spawnedBubbleDecreateRate = decreaseRate;
+        _spawnedBubbleDecreaseRate = decreaseRate;
         _minValue = minValue;
     }
 

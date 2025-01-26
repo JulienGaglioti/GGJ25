@@ -193,7 +193,10 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     {
         CurrentlyPresentDifficulty += value;
         DynamicPercentage = (float)CurrentlyPresentDifficulty / (float)_currentDifficultyValue;
-        MyAudioManager.Instance.OnDynamicValueUpdate(DynamicPercentage);
+        if (MyAudioManager.Instance != null)
+        {
+            MyAudioManager.Instance.OnDynamicValueUpdate(DynamicPercentage);
+        }
     }
 }
 
