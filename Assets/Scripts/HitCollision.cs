@@ -7,6 +7,7 @@ public class HitCollision : MonoBehaviour
     {
         if(other.TryGetComponent(out Enemy enemy))
         {
+            Instantiate(enemy.deathEffect, enemy.transform.position, Quaternion.identity);
             enemy.DestroyEnemy();
             bubble.DestroyBubble();
         }
