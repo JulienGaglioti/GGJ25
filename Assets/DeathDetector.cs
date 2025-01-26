@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DeathDetector : MonoBehaviour
 {
     BubbleManager _bubbleManager;
     [SerializeField] private GameObject _deathEffect;
+    [SerializeField] private List<AudioClip> deathClips;
     private void Awake()
     {
         _bubbleManager = GetComponent<BubbleManager>();
@@ -15,6 +17,7 @@ public class DeathDetector : MonoBehaviour
         if (_bubbleManager.GetCurrentBubble() == null)
         {
             gameObject.SetActive(false);
+            MyAudioManager.Instance.PlayClip(deathClips);
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
         }
     }

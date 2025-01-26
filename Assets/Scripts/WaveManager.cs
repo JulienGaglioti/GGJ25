@@ -22,6 +22,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     [SerializeField] private List<Transform> _swimmerSpawnPositions;
     [SerializeField] private List<Transform> _shooterSpawnPositions;
     [SerializeField] private BubbleManager bubbleManager;
+    [SerializeField] private List<AudioClip> newWaveClip;
     private List<Enemy> _enemies = new();
     private List<int> _enemyDifficultyValues = new();
     public int CurrentDifficultyValue;
@@ -124,6 +125,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
         // print("start wave #" + _currentWave);
         // MyAudioManager.Instance.SetMusic(5, 1, 5);
         CheckNewEnemies();
+        MyAudioManager.Instance.PlayClip(newWaveClip);
 
         // spawn enemies
         _isSpawingWave = true;

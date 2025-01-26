@@ -171,12 +171,6 @@ MonoBehaviour:
   CanMergeWithStationBubble: 0
   priority: 1
   TimeBeforeMergeIsEnabled: 0.6
-  SurfaceStopRate: 15
-  TopWaterLevel: 3.7
-  MidWaterLevel: 0
-  BotWaterLevel: 3.6
-  UpwardFloatForce: 3
-  DownwardFloatForce: 2
   value: 1
   minValueForFade: 0
   multiplier: 0.8
@@ -207,3 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubble: {fileID: 2553241525648651031}
+  bubbleExplosionClips:
+  - {fileID: 8300000, guid: 6fdafa3db9204254ea75c811aeae709a, type: 3}
+  - {fileID: 8300000, guid: 9814140e63142ae44a0a51882c7ffbb4, type: 3}
+  - {fileID: 8300000, guid: 4fb33e3aec30c3f45b0a50dc2dfcd7c8, type: 3}

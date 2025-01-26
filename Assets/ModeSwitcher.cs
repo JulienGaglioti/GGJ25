@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ModeSwitcher : MonoBehaviour
@@ -6,6 +7,8 @@ public class ModeSwitcher : MonoBehaviour
     public GameObject station;
     private bool _shooting = true;
     [SerializeField] private float ejectForce = 6;
+    [SerializeField] private List<AudioClip> enterBubbleAudioClips;
+    [SerializeField] private List<AudioClip> exitBubbleAudioClips;
 
     void Start()
     {
@@ -45,6 +48,7 @@ public class ModeSwitcher : MonoBehaviour
             movement2D.enabled = !_shooting;
             movement2D.SetTargetVelocity(BubbleStation.Instance.GetShootDirection() * ejectForce);
             movement2D.SetVelocity(BubbleStation.Instance.GetShootDirection() * ejectForce);
+            MyAudioManager.Instance.PlayClip(exitBubbleAudioClips);
         }
     }
 

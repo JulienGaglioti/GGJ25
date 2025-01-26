@@ -248,6 +248,8 @@ MonoBehaviour:
   - {fileID: 2772905715967594651}
   _shooterSpawnPositions: []
   bubbleManager: {fileID: 0}
+  newWaveClip:
+  - {fileID: 8300000, guid: f31c2e5d82ffd0947aba28dd6092b186, type: 3}
   CurrentDifficultyValue: 0
   CurrentlyPresentDifficulty: 0
   DynamicPercentage: 0

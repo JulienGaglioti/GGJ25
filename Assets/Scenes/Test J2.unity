@@ -798,6 +798,10 @@ MonoBehaviour:
   bubblePrefab: {fileID: 6279290141050644353, guid: fcbc48f3743a36f428d9e29eeb54c45f, type: 3}
   station: {fileID: 304017989}
   ejectForce: 6
+  enterBubbleAudioClips:
+  - {fileID: 8300000, guid: bdbf2890c35652243859da8ff646c592, type: 3}
+  exitBubbleAudioClips:
+  - {fileID: 8300000, guid: 3c2922b6b20a7dc4caa40214c945f0fd, type: 3}
 --- !u!1 &1267532725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,6 +1119,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2180412320032723226, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
+      propertyPath: AudioSources.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4869094823315380102, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
       propertyPath: m_Name
       value: Audio Manager
@@ -1160,7 +1168,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8768176281836015353, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
+    - {fileID: 7187415939441265213, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
+    - {fileID: 4026581484648578389, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}

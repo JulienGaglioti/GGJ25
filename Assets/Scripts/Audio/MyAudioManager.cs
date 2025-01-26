@@ -9,8 +9,31 @@ public class MyAudioManager : MonoBehaviourSingleton<MyAudioManager>
     public float MusicLevel2;
     public float MusicLevel3;
     public List<SingleAudioSource> MusicSources;
+    public List<SingleAudioSource> AudioSources;
     private int _currentMusicValue;
 
+    public void PlayClip(List<AudioClip> clips)
+    {
+        AudioClip clip = clips[Random.Range(0, clips.Count)];
+
+        bool allSourcesOccupied = true;
+        foreach (var source in AudioSources)
+        {
+            if(!source.Source.isPlaying)
+            {
+                source.PlayClip(clip);
+                allSourcesOccupied = false;
+                // print(AudioSources.IndexOf(source));
+                return;
+            }
+        }
+
+        if(allSourcesOccupied)
+        {
+            // print("all sources occupied");
+            AudioSources[0].PlayClip(clip);
+        }        
+    }
 
     public void SetMusic(int index, float targetVolume, float duration)
     {
@@ -55,7 +78,7 @@ public class MyAudioManager : MonoBehaviourSingleton<MyAudioManager>
         switch (_currentMusicValue)
         {
             case 0:
-                print("value 0: é presente solo la _0");
+                // print("value 0: é presente solo la _0");
                 SetMusic(1, 1f, DefaultFadeDuration);
                 if(MusicSources[2].Source.volume > 0) SetMusic(2, 0f, DefaultFadeDuration * 2);
                 if(MusicSources[3].Source.volume > 0) SetMusic(3, 0f, DefaultFadeDuration * 3);
@@ -63,7 +86,7 @@ public class MyAudioManager : MonoBehaviourSingleton<MyAudioManager>
                 if(MusicSources[5].Source.volume > 0) SetMusic(5, 0f, DefaultFadeDuration * 5);
                 break;
             case 1:
-                print("value 1: é presente solo la _25, sparisce la _0");
+                // print("value 1: é presente solo la _25, sparisce la _0");
                 if(MusicSources[1].Source.volume > 0) SetMusic(1, 0f, DefaultFadeDuration);
                 SetMusic(2, 1f, DefaultFadeDuration * 2);                
                 if(MusicSources[3].Source.volume > 0) SetMusic(3, 0f, DefaultFadeDuration * 3);
@@ -71,7 +94,7 @@ public class MyAudioManager : MonoBehaviourSingleton<MyAudioManager>
                 if(MusicSources[5].Source.volume > 0) SetMusic(5, 0f, DefaultFadeDuration * 5);
                 break;
             case 2:
-                print("value 2: sono presenti _25, _50");
+                // print("value 2: sono presenti _25, _50");
                 if(MusicSources[1].Source.volume > 0) SetMusic(1, 0f, DefaultFadeDuration);
                 if(MusicSources[2].Source.volume < 1) SetMusic(2, 1f, DefaultFadeDuration * 2);                
                 SetMusic(3, 1f, DefaultFadeDuration * 3); 
@@ -79,7 +102,7 @@ public class MyAudioManager : MonoBehaviourSingleton<MyAudioManager>
                 if(MusicSources[5].Source.volume > 0) SetMusic(5, 0f, DefaultFadeDuration * 5);
                 break;
             case 3:
-                print("value 3: sono presenti _25, _50, _75");
+                // print("value 3: sono presenti _25, _50, _75");
                 if(MusicSources[1].Source.volume > 0) SetMusic(1, 0f, DefaultFadeDuration);
                 if(MusicSources[2].Source.volume < 1) SetMusic(2, 1f, DefaultFadeDuration * 2);                
                 if(MusicSources[3].Source.volume < 1) SetMusic(3, 1f, DefaultFadeDuration * 3); 
@@ -87,7 +110,7 @@ public class MyAudioManager : MonoBehaviourSingleton<MyAudioManager>
                 if(MusicSources[5].Source.volume > 0) SetMusic(5, 0f, DefaultFadeDuration * 5);
                 break;
             case 4:
-                print("value 4: sono presenti _25, _50, _75, _100");
+                // print("value 4: sono presenti _25, _50, _75, _100");
                 if(MusicSources[1].Source.volume > 0) SetMusic(1, 0f, DefaultFadeDuration);
                 if(MusicSources[2].Source.volume < 1) SetMusic(2, 1f, DefaultFadeDuration * 2);                
                 if(MusicSources[3].Source.volume < 1) SetMusic(3, 1f, DefaultFadeDuration * 3); 
