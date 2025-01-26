@@ -33,7 +33,7 @@ public abstract class Enemy : MonoBehaviour
             var velocity = MoveToTarget(_playerObj);
             if (velocity.x == 0) return;
             var scale = transform.localScale;
-            scale.x = Mathf.Sign(velocity.x);
+            scale.x = -Mathf.Sign(velocity.x);
             transform.localScale = scale;
         }
     }
