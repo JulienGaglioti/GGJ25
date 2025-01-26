@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6747899946065859014}
   - component: {fileID: 2650903959011013840}
   - component: {fileID: 9046863160361969738}
+  - component: {fileID: 1671880907672832455}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -216,6 +217,10 @@ MonoBehaviour:
   bubblePrefab: {fileID: 6279290141050644353, guid: fcbc48f3743a36f428d9e29eeb54c45f, type: 3}
   station: {fileID: 0}
   ejectForce: 6
+  enterBubbleAudioClips:
+  - {fileID: 8300000, guid: bdbf2890c35652243859da8ff646c592, type: 3}
+  exitBubbleAudioClips:
+  - {fileID: 8300000, guid: 3c2922b6b20a7dc4caa40214c945f0fd, type: 3}
 --- !u!114 &2650903959011013840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,3 +256,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1671880907672832455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6073280750218506996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8bbc261974ed6449160842d6980f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathEffect: {fileID: 1826572294929486123, guid: 07d7db2c550d67f4e81bf86b2f018c15, type: 3}
+  deathClips:
+  - {fileID: 8300000, guid: 04d5c6790fe75d946bf27007e2d44bab, type: 3}
+  - {fileID: 8300000, guid: 7f21e200bd1c63d44bd76394d96c1593, type: 3}
+  - {fileID: 8300000, guid: 3e3356ee7ceac40408b6babc6554eb03, type: 3}
+  - {fileID: 8300000, guid: 8b9c8e7617a10d7498ff6afa05cd7731, type: 3}

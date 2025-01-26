@@ -389,6 +389,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 370293190838238955, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 370293190838238955, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 5007ad18f6057f34dbe7bc45df52df96, type: 3}
+    - target: {fileID: 370293190838238955, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5007ad18f6057f34dbe7bc45df52df96, type: 3}
     - target: {fileID: 4869094823315380102, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
       propertyPath: m_Name
       value: Audio Manager

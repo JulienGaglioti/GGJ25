@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
     [SerializeField] private Bubble bubblePrefab;
     [SerializeField] private Transform cannonTransform;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private List<AudioClip> shootClips;
 
 
     private void Start() 
@@ -59,8 +61,9 @@ public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
         bubbleProjectile.Oxygen = OxygenCostPerBubble;
         var shootdirection = GetShootDirection();
         bubbleProjectile.AddForce(shootdirection * ShootForce);
-
         bubbleScript.Oxygen -= OxygenCostPerBubble;
+
+        MyAudioManager.Instance.PlayClip(shootClips);
     }
 
     public Vector2 GetShootDirection()

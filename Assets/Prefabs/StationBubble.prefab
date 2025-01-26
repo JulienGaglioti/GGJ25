@@ -371,3 +371,7 @@ MonoBehaviour:
   bubblePrefab: {fileID: 2553241525648651031, guid: fcbc48f3743a36f428d9e29eeb54c45f, type: 3}
   cannonTransform: {fileID: 6794402397057202101}
   shootPoint: {fileID: 2269525472441618449}
+  shootClips:
+  - {fileID: 8300000, guid: 6fe66149f4083ed46867b1fc94278b36, type: 3}
+  - {fileID: 8300000, guid: dc2dd91e349e0f14b88bb2ab43ec98c1, type: 3}
+  - {fileID: 8300000, guid: 276b79112da28384fbccf31188f0485e, type: 3}
