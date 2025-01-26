@@ -181,9 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488f07b237d13e6499683b383409a557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 6
+  maxSpeed: 4.5
   acceleration: 12
-  deceleration: 12
+  deceleration: 14
   OnMove:
     m_PersistentCalls:
       m_Calls: []
@@ -237,6 +237,7 @@ MonoBehaviour:
   leaveBubbleValue: 3
   ScoreText: {fileID: 0}
   score: 0
+  wave: 0
   swimAnimation: {fileID: 9100000, guid: 6e3eed54bbe5d7e46aa95b99a2330fe7, type: 2}
   steerAnimation: {fileID: 9100000, guid: 30de9b2046560ca4c96ad1abe4a086fa, type: 2}
 --- !u!95 &9046863160361969738

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviourSingleton<WaveManager>
 {
-    // 1 1 2 3 5 8 13 21     
+    public int CurrentDifficultyValue;
+    public int CurrentlyPresentDifficulty;
+    public float DynamicPercentage;
+    public int EnemyCount = 0;
     [SerializeField] private float waitTimeBeforeWave = 6f;
     [SerializeField] private float waitTimeAfterWave = 2f;
     [SerializeField] private float timeBetweenEnemiesInWave = 1f;
+    [SerializeField] private float timeBetweenEnemiesInBatchSpawn = 0.3f;
 
     [Header("Bubbles")]
     [SerializeField] private int bubblesSpawnedPerWave;
@@ -26,21 +30,17 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     [SerializeField] private List<AudioClip> endWaveClip;
     private List<Enemy> _enemies = new();
     private List<int> _enemyDifficultyValues = new();
-    public int CurrentDifficultyValue;
     private int _previousDifficultyValue;
     private int _remainingDifficultyInWave;
     private int _currentWave;
     private bool _isSpawingWave;
     private bool _finishedSpawningWave;
 
-    // [Header("Dynamic Difficulty")]
-    public int CurrentlyPresentDifficulty;
-    public float DynamicPercentage;
 
 
-    private void Start() 
+    private void Start()
     {
-        if(bubbleManager == null)
+        if (bubbleManager == null)
         {
             bubbleManager = FindAnyObjectByType<BubbleManager>();
         }
@@ -51,9 +51,9 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
         StartCoroutine(WaitCoroutine());
     }
 
-    private void Update() 
+    private void Update()
     {
-        if(_finishedSpawningWave && DynamicPercentage <= 0.1f)
+        if (_finishedSpawningWave && DynamicPercentage <= 0.1f)
         {
             _finishedSpawningWave = false;
             StartCoroutine(WaitCoroutine());
@@ -64,11 +64,11 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     {
         foreach (var enemy in allEnemies)
         {
-            if(enemy.DifficultyValue <= 1)
+            if (enemy.DifficultyValue <= 1)
             {
                 _enemies.Add(enemy);
                 _enemyDifficultyValues.Add(enemy.DifficultyValue);
-            }            
+            }
         }
     }
 
@@ -76,27 +76,27 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     {
         foreach (var enemy in allEnemies)
         {
-            if(enemy.FirstAppearance == _currentWave && !_enemies.Contains(enemy))
+            if (enemy.FirstAppearance == _currentWave && !_enemies.Contains(enemy))
             {
                 // print("added new enemy: " + enemy.name);
                 _enemies.Add(enemy);
                 _enemyDifficultyValues.Add(enemy.DifficultyValue);
-            }            
+            }
         }
     }
 
     private IEnumerator WaitCoroutine()
     {
-        if(_currentWave > 0)
+        if (_currentWave > 0)
         {
-            MyAudioManager.Instance?.PlayClip(endWaveClip);
+            MyAudioManager.Instance?.PlayEndWave();
         }
-        
+
         // print("wait Coroutine " + _currentWave);
         // MyAudioManager.Instance.SetMusic(5, 0, 3);
         yield return new WaitForSeconds(waitTimeAfterWave);
         // print("start wait phase");
-        if(_currentWave > 0)
+        if (_currentWave > 0)
         {
             // print("bubbles");
             for (int i = 0; i < bubblesSpawnedPerWave; i++)
@@ -106,12 +106,12 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
                 newBubble.Oxygen = Random.Range(bubbleSpawnMinOxygen, bubbleSpawnMaxOxygen);
                 var shootdirection = bubbleSpawnPoint.up;
                 newBubble.AddForce(shootdirection * Random.Range(bubbleSpawnMinForce, bubbleSpawnMaxForce));
-                newBubble.InitializeSpawnedBubble(bubbleManager.DecreaseRate/5f, bubbleManager.MinValue/5f);   
+                newBubble.InitializeSpawnedBubble(bubbleManager.DecreaseRate / 2.5f, bubbleManager.MinValue / 1.5f);
                 yield return new WaitForSeconds(Random.Range(0.3f, 0.7f));
-            }  
+            }
         }
-        
-        StartCoroutine(PreWaveCoroutine());      
+
+        StartCoroutine(PreWaveCoroutine());
     }
 
     private IEnumerator PreWaveCoroutine()
@@ -119,13 +119,13 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
         // print("pre wave Coroutine " + _currentWave);
         yield return new WaitForSeconds(waitTimeBeforeWave);
         CurrentlyPresentDifficulty = 0;
-        AddDynamicDifficulty(0);
+        AddDynamicDifficulty(0, 0);
         StartCoroutine(WaveCoroutine());
     }
 
 
     private IEnumerator WaveCoroutine()
-    {       
+    {
         // print("wave Coroutine " + _currentWave); 
         _currentWave++;
         // print("start wave #" + _currentWave);
@@ -137,17 +137,18 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
         // spawn enemies
         _isSpawingWave = true;
         _remainingDifficultyInWave = CurrentDifficultyValue;
-        while(_isSpawingWave)
+        while (_isSpawingWave)
         {
             yield return new WaitForSeconds(timeBetweenEnemiesInWave);
-            int numberOfSpawnedEnemies = Random.Range(1, Mathf.CeilToInt(_currentWave/2f));
+            int numberOfSpawnedEnemies = Random.Range(1, Mathf.CeilToInt(_currentWave / 2f));
             for (int i = 0; i < numberOfSpawnedEnemies; i++)
             {
-                if(_isSpawingWave)
+                if (_isSpawingWave)
                 {
                     _remainingDifficultyInWave -= SpawnEnemy();
-                }                
-            }            
+                    yield return new WaitForSeconds(timeBetweenEnemiesInBatchSpawn);
+                }
+            }
         }
 
         // increase difficulty value after the wave ends
@@ -162,18 +163,13 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
         // returns difficulty value
         // print("spawn enemy");
         Enemy randomEnemy = _enemies[Random.Range(0, _enemies.Count)];
-        Instantiate(randomEnemy, GetSpawnPosition(randomEnemy.EnemyType), randomEnemy.transform.rotation);
-
-        if(_remainingDifficultyInWave < randomEnemy.DifficultyValue)
+        if (_remainingDifficultyInWave < randomEnemy.DifficultyValue)
         {
+            CurrentDifficultyValue += randomEnemy.DifficultyValue - _remainingDifficultyInWave;
             _isSpawingWave = false;
         }
+        Instantiate(randomEnemy, GetSpawnPosition(randomEnemy.EnemyType), randomEnemy.transform.rotation);
 
-        // int randomDifficultyValue = _enemyDifficultyValues[Random.Range(0, _enemyDifficultyValues.Count)];
-        // if(_remainingDifficultyInWave < 0)
-        // {
-        //     _isSpawingWave = false;
-        // }
         return randomEnemy.DifficultyValue;
     }
 
@@ -182,26 +178,31 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
         switch (enemy)
         {
             case EnemyType.Walker:
-                return _walkerSpawnPositions[Random.Range(0, _walkerSpawnPositions.Count)].position 
+                return _walkerSpawnPositions[Random.Range(0, _walkerSpawnPositions.Count)].position
                 + Vector3.right * Random.Range(-1.5f, 1.5f);
             case EnemyType.Swimmer:
-                return _swimmerSpawnPositions[Random.Range(0, _swimmerSpawnPositions.Count)].position 
-                + Vector3.right * Random.Range(-2.5f, 2.5f) 
+                return _swimmerSpawnPositions[Random.Range(0, _swimmerSpawnPositions.Count)].position
+                + Vector3.right * Random.Range(-2.5f, 2.5f)
                 + Vector3.up * Random.Range(-1.5f, 1.5f);
             case EnemyType.Shooter:
-                return _shooterSpawnPositions[Random.Range(0, _shooterSpawnPositions.Count)].position 
-                + Vector3.right * Random.Range(-2.5f, 2.5f) 
+                return _shooterSpawnPositions[Random.Range(0, _shooterSpawnPositions.Count)].position
+                + Vector3.right * Random.Range(-2.5f, 2.5f)
                 + Vector3.up * Random.Range(-1.5f, 1.5f);
         }
 
-        return _walkerSpawnPositions[Random.Range(0, _walkerSpawnPositions.Count)].position 
+        return _walkerSpawnPositions[Random.Range(0, _walkerSpawnPositions.Count)].position
                 + Vector3.right * Random.Range(-1.5f, 1.5f);
     }
 
-    public void AddDynamicDifficulty(int value)
+    public void AddDynamicDifficulty(int value, int enemyCount)
     {
         CurrentlyPresentDifficulty += value;
-        DynamicPercentage = (float)CurrentlyPresentDifficulty / (float)CurrentDifficultyValue;
+        EnemyCount += enemyCount;
+
+        // print(CurrentlyPresentDifficulty + " / " + CurrentDifficultyValue);
+        // DynamicPercentage = (float)CurrentlyPresentDifficulty / (float)CurrentDifficultyValue;
+        DynamicPercentage = (float)EnemyCount / 5f;
+
         if (MyAudioManager.Instance != null)
         {
             MyAudioManager.Instance.OnDynamicValueUpdate(DynamicPercentage);

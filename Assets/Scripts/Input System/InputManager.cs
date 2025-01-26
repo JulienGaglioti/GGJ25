@@ -11,7 +11,8 @@ public class InputManager : MonoBehaviourSingleton<InputManager>
 
     [Header("Character Input Values")]
     public Vector2 MoveInput;
-    public Vector2 LookInput; 
+    public Vector2 LookInput;
+    public Vector2 LastLookInput; // last non zero look direction
     public Vector2 MousePosition;
     public string CurrentControlScheme { get => _playerInput.currentControlScheme; }
 
@@ -22,6 +23,7 @@ public class InputManager : MonoBehaviourSingleton<InputManager>
 
     public UnityAction AttackAction;
     public UnityAction SwitchAction;
+    public UnityAction ResetAction;
 
 
     private void Start()
@@ -40,6 +42,10 @@ public class InputManager : MonoBehaviourSingleton<InputManager>
     public void OnLook(InputValue value)
     {
         LookInput = value.Get<Vector2>();
+        if (LookInput.sqrMagnitude > 0)
+        {
+            LastLookInput = LookInput;
+        }
     }
 
     public void OnMousePosition(InputValue value)
@@ -55,6 +61,11 @@ public class InputManager : MonoBehaviourSingleton<InputManager>
     public void OnSwitch(InputValue value)
     {
         SwitchAction?.Invoke();
+    }
+
+    public void OnReset(InputValue value)
+    {
+        ResetAction?.Invoke();
     }
 
     public bool ControlSchemeIsMouse()

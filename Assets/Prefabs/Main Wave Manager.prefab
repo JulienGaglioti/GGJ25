@@ -209,9 +209,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cedea0ab791f874fae1c5fdd8cd202b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimeBeforeWave: 6
+  CurrentDifficultyValue: 0
+  CurrentlyPresentDifficulty: 0
+  DynamicPercentage: 0
+  EnemyCount: 0
+  waitTimeBeforeWave: 5
   waitTimeAfterWave: 2
-  timeBetweenEnemiesInWave: 1
+  timeBetweenEnemiesInWave: 1.1
+  timeBetweenEnemiesInBatchSpawn: 0.2
   bubblesSpawnedPerWave: 8
   bubbleSpawnPoints:
   - {fileID: 8333407670693958203}
@@ -252,9 +257,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f31c2e5d82ffd0947aba28dd6092b186, type: 3}
   endWaveClip:
   - {fileID: 8300000, guid: 8b97a866f635b8c469e4534f1c053676, type: 3}
-  CurrentDifficultyValue: 0
-  CurrentlyPresentDifficulty: 0
-  DynamicPercentage: 0
 --- !u!1 &2520788254371146154
 GameObject:
   m_ObjectHideFlags: 0

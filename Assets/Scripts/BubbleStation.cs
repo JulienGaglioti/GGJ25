@@ -7,6 +7,7 @@ public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
 {
     public float ShootForce;
     public float OxygenCostPerBubble;
+    public bool CanShoot;
     [SerializeField] private Bubble bubbleScript;
     [SerializeField] private Bubble bubblePrefab;
     [SerializeField] private Transform cannonTransform;
@@ -14,21 +15,22 @@ public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
     [SerializeField] private List<AudioClip> shootClips;
 
 
-    private void Start() 
+    private void Start()
     {
         InputManager.Instance.AttackAction += ShootBubble;
+        StartCoroutine(DelayedCanShootCoroutine());
     }
 
-    private void OnDestroy() 
+    private void OnDestroy()
     {
         InputManager.Instance.AttackAction -= ShootBubble;
     }
-    
-    private void Update() 
+
+    private void Update()
     {
         if (!Player.Instance.GetComponent<ModeSwitcher>().IsShooting()) { return; }
 
-        if(InputManager.Instance.ControlSchemeIsMouse())
+        if (InputManager.Instance.ControlSchemeIsMouse())
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPosition.z = transform.position.z;
@@ -36,27 +38,29 @@ public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
 
             Vector2 aimDirection = directionToMouse.normalized;
 
-            if(aimDirection.sqrMagnitude > 0)
+            if (aimDirection.sqrMagnitude > 0)
             {
                 float angle = Mathf.Atan2(aimDirection.x, aimDirection.y) * Mathf.Rad2Deg;
                 angle = Mathf.Clamp(angle, -90f, 90f);
                 cannonTransform.localRotation = Quaternion.Euler(0, angle, 0);
-            }  
+            }
         }
         else
         {
-            if(InputManager.Instance.LookInput.sqrMagnitude > 0)
+            if (InputManager.Instance.LastLookInput.sqrMagnitude > 0)
             {
-                float angle = Mathf.Atan2(InputManager.Instance.LookInput.x, InputManager.Instance.LookInput.y) * Mathf.Rad2Deg;
+                float angle = Mathf.Atan2(InputManager.Instance.LastLookInput.x, InputManager.Instance.LastLookInput.y) * Mathf.Rad2Deg;
                 angle = Mathf.Clamp(angle, -90f, 90f);
                 cannonTransform.localRotation = Quaternion.Euler(0, angle, 0);
-            }            
+            }
         }
     }
 
     private void ShootBubble()
     {
-        if (!Player.Instance.GetComponent<ModeSwitcher>().IsShooting()) { return; }
+        if (!Player.Instance.GetComponent<ModeSwitcher>().IsShooting()) return;
+        if (!CanShoot) return;
+
         Bubble bubbleProjectile = Instantiate(bubblePrefab, shootPoint.position, transform.rotation);
         bubbleProjectile.Oxygen = OxygenCostPerBubble;
         var shootdirection = GetShootDirection();
@@ -69,7 +73,7 @@ public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
     public Vector2 GetShootDirection()
     {
         Vector2 shootdirection;
-        if(InputManager.Instance.ControlSchemeIsMouse())
+        if (InputManager.Instance.ControlSchemeIsMouse())
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPosition.z = transform.position.z;
@@ -79,9 +83,15 @@ public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
         }
         else
         {
-            shootdirection = InputManager.Instance.LookInput;
+            shootdirection = InputManager.Instance.LastLookInput;
         }
 
         return shootdirection;
+    }
+
+    private IEnumerator DelayedCanShootCoroutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        CanShoot = true;
     }
 }

@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyType: 1
-  DifficultyValue: 5
-  FirstAppearance: 7
+  DifficultyValue: 4
+  FirstAppearance: 4
   speed: 2
   minSpeedVariation: 0.85
   maxSpeedVariation: 1.15

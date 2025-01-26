@@ -23,7 +23,7 @@ public abstract class Enemy : MonoBehaviour
         Rigidbody2D.gravityScale = 0;
         Rigidbody2D.freezeRotation = true;
         RandomizeSpeed();
-        WaveManager.Instance.AddDynamicDifficulty(DifficultyValue);
+        WaveManager.Instance.AddDynamicDifficulty(DifficultyValue, 1);
     }
 
     private void Update()
@@ -45,7 +45,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        WaveManager.Instance.AddDynamicDifficulty(-DifficultyValue);
+        WaveManager.Instance.AddDynamicDifficulty(-DifficultyValue, -1);
         Destroy(gameObject);
     }
 

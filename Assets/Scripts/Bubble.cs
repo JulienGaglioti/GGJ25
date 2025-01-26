@@ -24,7 +24,7 @@ public class Bubble : MonoBehaviour
     public float minValueForFade = 0.0f;
     public float multiplier = 1f;
     public float scaleOffset = 0f;
-    
+
 
     private Rigidbody2D _rigidBody;
     private MeshRenderer _meshRenderer;
@@ -81,7 +81,7 @@ public class Bubble : MonoBehaviour
 
         if (_canFade && Oxygen < _minValue)
         {
-            Destroy(gameObject);
+            DestroyBubble();
         }
     }
 
@@ -128,8 +128,8 @@ public class Bubble : MonoBehaviour
     }
 
     public void MergeWith(Bubble otherBubble, MergePosition mergePosition = MergePosition.Midpoint, bool forced = false)
-    {        
-        if ((!otherBubble.CanMerge() || !CanMerge()) && !forced) 
+    {
+        if ((!otherBubble.CanMerge() || !CanMerge()) && !forced)
             return;
 
         if (mergePosition == MergePosition.Midpoint)
@@ -159,7 +159,7 @@ public class Bubble : MonoBehaviour
 
     public void DestroyBubble()
     {
-        if(IsStationBubble)
+        if (IsStationBubble)
         {
             gameObject.SetActive(false);
             Oxygen = 0;

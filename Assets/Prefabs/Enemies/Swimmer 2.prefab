@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7663891823493927519}
   - component: {fileID: 8391354782915463743}
   m_Layer: 11
-  m_Name: Swimmer 3
+  m_Name: Swimmer 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,9 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyType: 1
-  DifficultyValue: 3
+  DifficultyValue: 2
   FirstAppearance: 2
-  speed: 1
+  speed: 0.8
   minSpeedVariation: 0.85
   maxSpeedVariation: 1.15
   deathEffect: {fileID: 1826572294929486123, guid: 07d7db2c550d67f4e81bf86b2f018c15, type: 3}

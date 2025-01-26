@@ -366,7 +366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShootForce: 160
-  OxygenCostPerBubble: 0.6
+  OxygenCostPerBubble: 0.5
+  CanShoot: 0
   bubbleScript: {fileID: 278360389139915587}
   bubblePrefab: {fileID: 2553241525648651031, guid: fcbc48f3743a36f428d9e29eeb54c45f, type: 3}
   cannonTransform: {fileID: 6794402397057202101}
