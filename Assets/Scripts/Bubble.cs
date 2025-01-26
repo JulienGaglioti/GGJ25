@@ -139,7 +139,10 @@ public class Bubble : MonoBehaviour
 
         Oxygen += otherBubble.Oxygen;
         otherBubble.DestroyBubble();
-        _rigidBody.linearVelocity = (_rigidBody.linearVelocity + otherBubble._rigidBody.linearVelocity) / 2;
+        if (!IsStationBubble && !IsPlayerBubble)
+        {
+            _rigidBody.linearVelocity = (_rigidBody.linearVelocity + otherBubble._rigidBody.linearVelocity) / 2;
+        }
     }
 
     public void AddForce(Vector2 direction)
