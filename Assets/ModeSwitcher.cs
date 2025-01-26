@@ -37,6 +37,7 @@ public class ModeSwitcher : MonoBehaviour
             baseBubble.Oxygen -= Player.Instance.leaveBubbleValue;
             if (baseBubble.Oxygen <= 0)
             {
+                baseBubble.Oxygen = 0;
                 baseBubble.DestroyBubble();
             }
             _shooting = false;
@@ -59,7 +60,7 @@ public class ModeSwitcher : MonoBehaviour
             transform.position = new Vector3(station.transform.position.x, station.transform.position.y, transform.position.z);
             var bubbleManager = GetComponent<BubbleManager>();
             var otherBubble = bubbleManager.GetCurrentBubble();
-            var baseBubble = transform.parent.GetComponent<Bubble>();
+            var baseBubble = BubbleStation.Instance.GetComponent<Bubble>();
             if (otherBubble == baseBubble) return;
             bubbleManager.SetCurrentBubble(baseBubble);
             Destroy(otherBubble.gameObject);
