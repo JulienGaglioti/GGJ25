@@ -9,6 +9,7 @@ public class HitCollision : MonoBehaviour
     {
         if(other.TryGetComponent(out Enemy enemy))
         {
+            Player.Instance.AddScore(enemy.DifficultyValue);
             MyAudioManager.Instance.PlayClip(bubbleExplosionClips);
             Instantiate(enemy.deathEffect, enemy.transform.position, Quaternion.identity);
             enemy.DestroyEnemy();
