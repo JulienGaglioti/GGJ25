@@ -71,6 +71,7 @@ public class ModeSwitcher : MonoBehaviour
             Destroy(otherBubble.gameObject);
             baseBubble.Oxygen += otherBubble.Oxygen;
             Player.Instance?.StartSteerAnimation();
+            MyAudioManager.Instance?.PlayClip(enterBubbleAudioClips);
         }
     }
 

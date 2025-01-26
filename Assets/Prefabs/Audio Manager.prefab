@@ -43,10 +43,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5007ad18f6057f34dbe7bc45df52df96, type: 3}
+  m_Resource: {fileID: 8300000, guid: 5007ad18f6057f34dbe7bc45df52df96, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.75
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -767,6 +767,7 @@ MonoBehaviour:
   MusicLevel1: 0.25
   MusicLevel2: 0.5
   MusicLevel3: 0.75
+  TopMusicLevel: 0.7
   MusicSources:
   - {fileID: 4292946455396514638}
   - {fileID: 1362687356188334870}

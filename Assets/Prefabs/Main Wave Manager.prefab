@@ -250,6 +250,8 @@ MonoBehaviour:
   bubbleManager: {fileID: 0}
   newWaveClip:
   - {fileID: 8300000, guid: f31c2e5d82ffd0947aba28dd6092b186, type: 3}
+  endWaveClip:
+  - {fileID: 8300000, guid: 8b97a866f635b8c469e4534f1c053676, type: 3}
   CurrentDifficultyValue: 0
   CurrentlyPresentDifficulty: 0
   DynamicPercentage: 0
