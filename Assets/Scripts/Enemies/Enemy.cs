@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -12,6 +14,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float speed = 1;
     [SerializeField] protected float minSpeedVariation = 0.85f;
     [SerializeField] protected float maxSpeedVariation = 1.15f;
+    [SerializeField] protected GameObject deathEffect;
     protected Rigidbody2D Rigidbody2D;
     private void Awake()
     {
@@ -36,6 +39,14 @@ public abstract class Enemy : MonoBehaviour
     }
 
     protected abstract void MoveToTarget(GameObject target);
+
+    private void OnDestroy()
+    {
+        if (deathEffect != null)
+        {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+    }
 }
 
 public enum EnemyType
