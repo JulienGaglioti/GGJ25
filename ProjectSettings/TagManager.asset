@@ -19,8 +19,8 @@ TagManager:
   - PlayerBubble
   - Map
   - Enemy
-  - 
-  - 
+  - Surface
+  - BubbleSurfaceCollider
   - 
   - 
   - 

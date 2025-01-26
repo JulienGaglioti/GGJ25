@@ -7,7 +7,7 @@ public class HitCollision : MonoBehaviour
     {
         if(other.TryGetComponent(out Enemy enemy))
         {
-            Destroy(enemy.gameObject);
+            enemy.DestroyEnemy();
             bubble.DestroyBubble();
         }
     }
