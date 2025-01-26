@@ -24,7 +24,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     [SerializeField] private BubbleManager bubbleManager;
     private List<Enemy> _enemies = new();
     private List<int> _enemyDifficultyValues = new();
-    private int _currentDifficultyValue;
+    public int CurrentDifficultyValue;
     private int _previousDifficultyValue;
     private int _remainingDifficultyInWave;
     private int _currentWave;
@@ -44,7 +44,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
         }
 
         SetupEnemies();
-        _currentDifficultyValue = 1;
+        CurrentDifficultyValue = 1;
         _previousDifficultyValue = 1;
         StartCoroutine(WaitCoroutine());
     }
@@ -127,7 +127,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
 
         // spawn enemies
         _isSpawingWave = true;
-        _remainingDifficultyInWave = _currentDifficultyValue;
+        _remainingDifficultyInWave = CurrentDifficultyValue;
         while(_isSpawingWave)
         {
             yield return new WaitForSeconds(timeBetweenEnemiesInWave);
@@ -143,8 +143,8 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
 
         // increase difficulty value after the wave ends
         _finishedSpawningWave = true;
-        int previousValue = _currentDifficultyValue;
-        _currentDifficultyValue += _previousDifficultyValue;
+        int previousValue = CurrentDifficultyValue;
+        CurrentDifficultyValue += _previousDifficultyValue;
         _previousDifficultyValue = previousValue;
     }
 
@@ -192,7 +192,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     public void AddDynamicDifficulty(int value)
     {
         CurrentlyPresentDifficulty += value;
-        DynamicPercentage = (float)CurrentlyPresentDifficulty / (float)_currentDifficultyValue;
+        DynamicPercentage = (float)CurrentlyPresentDifficulty / (float)CurrentDifficultyValue;
         MyAudioManager.Instance.OnDynamicValueUpdate(DynamicPercentage);
     }
 }

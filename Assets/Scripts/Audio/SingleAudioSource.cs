@@ -15,7 +15,15 @@ public class SingleAudioSource : MonoBehaviour
     public void SetToTargetVolume(float targetVolume, float time)
     {
         _targetVolume = targetVolume;
-        _fadeDuration = time;
+        if(Source.volume > targetVolume)
+        {
+            _fadeDuration = MyAudioManager.Instance.DefaultFadeDuration;
+        }
+        else
+        {
+            _fadeDuration = time;
+        }
+        
         StartCoroutine(SetTargetVolume());
     }
 
