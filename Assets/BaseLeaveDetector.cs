@@ -12,14 +12,7 @@ public class BaseLeaveDetector : MonoBehaviour
     {
         if (ColliderIsPlayer(other))
         {
-            Player.Instance.GetComponent<ModeSwitcher>().Mount();
-            var bubbleManager = other.GetComponent<BubbleManager>();
-            var otherBubble = bubbleManager.GetCurrentBubble();
-            var baseBubble = transform.parent.GetComponent<Bubble>();
-            if (otherBubble == baseBubble) return;
-            bubbleManager.SetCurrentBubble(baseBubble);
-            Destroy(otherBubble.gameObject);
-            baseBubble.Oxygen += otherBubble.Oxygen;
+            other.GetComponent<ModeSwitcher>().Mount();
         }
     }
 }

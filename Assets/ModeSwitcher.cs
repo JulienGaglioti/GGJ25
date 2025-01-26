@@ -52,10 +52,19 @@ public class ModeSwitcher : MonoBehaviour
         if (!_shooting)
         {
             _shooting = true;
+            BubbleStation.Instance.gameObject.SetActive(true);
             var movement2D = GetComponent<Movement2D>();
             movement2D.Reset();
             movement2D.enabled = !_shooting;
             transform.position = new Vector3(station.transform.position.x, station.transform.position.y, transform.position.z);
+            var bubbleManager = GetComponent<BubbleManager>();
+            var otherBubble = bubbleManager.GetCurrentBubble();
+            var baseBubble = transform.parent.GetComponent<Bubble>();
+            if (otherBubble == baseBubble) return;
+            bubbleManager.SetCurrentBubble(baseBubble);
+            Destroy(otherBubble.gameObject);
+            baseBubble.Oxygen += otherBubble.Oxygen;
+
         }
     }
 

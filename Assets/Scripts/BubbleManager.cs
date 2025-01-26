@@ -21,7 +21,7 @@ public class BubbleManager : MonoBehaviour
 
         if (currentBubble.Oxygen < MinValue)
         {
-            Destroy(currentBubble.gameObject);
+            currentBubble.DestroyBubble();
             currentBubble = null;
         }
     }

@@ -161,7 +161,7 @@ public class Bubble : MonoBehaviour
     {
         if(IsStationBubble)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else
         {
