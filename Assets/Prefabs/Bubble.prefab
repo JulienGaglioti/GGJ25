@@ -167,9 +167,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsStationBubble: 0
+  IsPlayerBubble: 0
   CanMergeWithStationBubble: 0
   priority: 1
-  TimeBeforeMergeIsEnabled: 0.8
+  TimeBeforeMergeIsEnabled: 0.6
+  SurfaceStopRate: 15
+  TopWaterLevel: 3.7
+  MidWaterLevel: 0
+  BotWaterLevel: 3.6
+  UpwardFloatForce: 3
+  DownwardFloatForce: 2
   value: 1
   minValueForFade: 0
   multiplier: 0.8

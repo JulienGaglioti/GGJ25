@@ -21,6 +21,7 @@ public class ModeSwitcher : MonoBehaviour
             var bubbleManager = GetComponent<BubbleManager>();
             var newBubbleObj = Instantiate(bubblePrefab, transform);
             var newBubble = newBubbleObj.GetComponent<Bubble>();
+            newBubble.IsPlayerBubble = true;
             var newBubbleCollisionMerger = newBubbleObj.GetComponent<BubbleCollisionMerger>();
             newBubbleCollisionMerger.mergePosition = Bubble.MergePosition.SelfOrigin;
             newBubble.minValueForFade = 1;

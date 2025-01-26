@@ -5,12 +5,21 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     // 1 1 2 3 5 8 13 21     
-    [SerializeField] private float timeBetweenTwoWaves = 5f;
+    [SerializeField] private float waitTimeBeforeWave = 6f;
+    [SerializeField] private float waitTimeAfterWave = 2f;
     [SerializeField] private float timeBetweenEnemiesInWave = 1f;
+    [SerializeField] private int bubblesSpawnedPerWave;
+    [SerializeField] private List<Transform> bubbleSpawnPoints;
+    [SerializeField] private float bubbleSpawnMinForce;
+    [SerializeField] private float bubbleSpawnMaxForce;
+    [SerializeField] private float bubbleSpawnMinOxygen;
+    [SerializeField] private float bubbleSpawnMaxOxygen;
+    [SerializeField] private Bubble bubblePrefab;
     [SerializeField] private List<Enemy> allEnemies;
     [SerializeField] private List<Transform> _walkerSpawnPositions;
     [SerializeField] private List<Transform> _swimmerSpawnPositions;
     [SerializeField] private List<Transform> _shooterSpawnPositions;
+    [SerializeField] private BubbleManager bubbleManager;
     private List<Enemy> _enemies = new();
     private List<int> _enemyDifficultyValues = new();
     private int _currentDifficultyValue;
@@ -21,6 +30,11 @@ public class WaveManager : MonoBehaviour
 
     private void Start() 
     {
+        if(bubbleManager == null)
+        {
+            bubbleManager = FindAnyObjectByType<BubbleManager>();
+        }
+
         SetupEnemies();
         _currentDifficultyValue = 1;
         _previousDifficultyValue = 1;
@@ -45,7 +59,7 @@ public class WaveManager : MonoBehaviour
         {
             if(enemy.FirstAppearance == _currentWave && !_enemies.Contains(enemy))
             {
-                print("added new enemy: " + enemy.name);
+                // print("added new enemy: " + enemy.name);
                 _enemies.Add(enemy);
                 _enemyDifficultyValues.Add(enemy.DifficultyValue);
             }            
@@ -55,16 +69,30 @@ public class WaveManager : MonoBehaviour
     private IEnumerator WaitCoroutine()
     {
         // print("start wait phase");
-        yield return new WaitForSeconds(timeBetweenTwoWaves);
+        for (int i = 0; i < bubblesSpawnedPerWave; i++)
+        {
+            Transform bubbleSpawnPoint = bubbleSpawnPoints[Random.Range(0, bubbleSpawnPoints.Count)];
+            Bubble newBubble = Instantiate(bubblePrefab, bubbleSpawnPoint.position, bubblePrefab.transform.rotation);
+            newBubble.Oxygen = Random.Range(bubbleSpawnMinOxygen, bubbleSpawnMaxOxygen);
+            var shootdirection = bubbleSpawnPoint.up;
+            newBubble.AddForce(shootdirection * Random.Range(bubbleSpawnMinForce, bubbleSpawnMaxForce));
+            print("bubble");
+            newBubble.InitializeSpawnedBubble(bubbleManager.DecreaseRate/5f, bubbleManager.MinValue/5f);   
+            yield return new WaitForSeconds(Random.Range(0.3f, 0.7f));
+        }
+
+        yield return new WaitForSeconds(waitTimeBeforeWave);
         StartCoroutine(WaveCoroutine());
     }
+
 
     private IEnumerator WaveCoroutine()
     {        
         _currentWave++;
-        print("start wave #" + _currentWave);
+        // print("start wave #" + _currentWave);
         CheckNewEnemies();
 
+        // spawn enemies
         _isSpawingWave = true;
         _remainingDifficultyInWave = _currentDifficultyValue;
         while(_isSpawingWave)
@@ -85,7 +113,7 @@ public class WaveManager : MonoBehaviour
         _currentDifficultyValue += _previousDifficultyValue;
         _previousDifficultyValue = previousValue;
 
-        
+        yield return new WaitForSeconds(waitTimeAfterWave);
         StartCoroutine(WaitCoroutine());
     }
 

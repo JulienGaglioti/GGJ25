@@ -5,7 +5,7 @@ public class BubbleManager : MonoBehaviour
 {
     [SerializeField] private Bubble currentBubble;
     [SerializeField] private Bubble startingBubble;
-    [SerializeField] private float decreaseRate = 0.5f;
+    public float DecreaseRate = 0.5f;
     [field: SerializeField] public float MinValue { get; set; }
 
     private void Start()
@@ -17,7 +17,7 @@ public class BubbleManager : MonoBehaviour
     {
         if (currentBubble == null) return;
 
-        currentBubble.Oxygen -= decreaseRate * Time.deltaTime;
+        currentBubble.Oxygen -= DecreaseRate * Time.deltaTime;
 
         if (currentBubble.Oxygen < MinValue)
         {

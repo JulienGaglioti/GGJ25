@@ -5,7 +5,9 @@ using UnityEngine;
 public class Bubble : MonoBehaviour
 {
     public bool IsStationBubble;
+    public bool IsPlayerBubble;
     public bool CanMergeWithStationBubble;
+
     public int priority = 1;
     public float TimeBeforeMergeIsEnabled;
 
@@ -22,10 +24,15 @@ public class Bubble : MonoBehaviour
     public float minValueForFade = 0.0f;
     public float multiplier = 1f;
     public float scaleOffset = 0f;
+    
 
     private Rigidbody2D _rigidBody;
     private MeshRenderer _meshRenderer;
     private BubbleCollisionMerger _bubbleCollisionMerger;
+    private bool _isSpawnedBubble;
+    private float _spawnedBubbleDecreateRate;
+    private float _minValue;
+    private bool _canFade = false;
 
     public float Oxygen
     {
@@ -62,8 +69,27 @@ public class Bubble : MonoBehaviour
 
         if (!IsStationBubble)
         {
-            StartCoroutine(EnablemergeDelayed());
+            StartCoroutine(DelayedInitialization());
         }
+    }
+
+    private void Update()
+    {
+        if (!_isSpawnedBubble) return;
+
+        Oxygen -= _spawnedBubbleDecreateRate * Time.deltaTime;
+
+        if (_canFade && Oxygen < _minValue)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void InitializeSpawnedBubble(float decreaseRate, float minValue)
+    {
+        _isSpawnedBubble = true;
+        _spawnedBubbleDecreateRate = decreaseRate;
+        _minValue = minValue;
     }
 
     private void UpdateScale()
@@ -120,10 +146,11 @@ public class Bubble : MonoBehaviour
         _rigidBody.AddForce(direction);
     }
 
-    private IEnumerator EnablemergeDelayed()
+    private IEnumerator DelayedInitialization()
     {
         yield return new WaitForSeconds(TimeBeforeMergeIsEnabled);
         CanMergeWithStationBubble = true;
+        _canFade = true;
     }
 
     public void DestroyBubble()
