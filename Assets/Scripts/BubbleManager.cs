@@ -8,7 +8,7 @@ public class BubbleManager : MonoBehaviour
     public float DecreaseRate = 0.5f;
     [field: SerializeField] public float MinValue { get; set; }
 
-    private void Start()
+    private void Awake()
     {
         currentBubble = startingBubble;
     }
