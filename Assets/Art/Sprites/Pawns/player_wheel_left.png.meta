@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f5ce028d2fd8d184fa77dbe82ccea2df
+guid: 35724609e3a533c45a4681fc5c594626
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wheel_0
+      name: player_wheel_left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 471a86bd2e7529a43b3976c80eda52d1
-      internalID: -1628074311
+      spriteID: 55d108cfac7118f4c890c4246235f57a
+      internalID: -407925103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wheel_1
+      name: player_wheel_left_1
       rect:
         serializedVersion: 2
         x: 32
@@ -134,8 +134,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5797ea4300fee9945b8ef0baedb4ef73
-      internalID: 1908142390
+      spriteID: 69f90c088f3f11e4f9b0b9aa6a24e28b
+      internalID: -423364133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_wheel_left_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd028449e947a394cb9355ed2d15b97c
+      internalID: 1445234249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_wheel_left_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c304bc0e3f65543979a95a38a70c68
+      internalID: 478653277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_wheel_left_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549b3c713ed8f984b80a5e8c1664c3b6
+      internalID: 2022246108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_wheel_left_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f726babcb711cc144bb8e35f106578f6
+      internalID: 30630573
       vertices: []
       indices: 
       edges: []
@@ -144,7 +232,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 809757e9d103a4e468c713b5fff277ac
     internalID: 0
     vertices: []
     indices: 
@@ -154,8 +242,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      wheel_0: -1628074311
-      wheel_1: 1908142390
+      player_wheel_left_0: -407925103
+      player_wheel_left_1: -423364133
+      player_wheel_left_2: 1445234249
+      player_wheel_left_3: 478653277
+      player_wheel_left_4: 2022246108
+      player_wheel_left_5: 30630573
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

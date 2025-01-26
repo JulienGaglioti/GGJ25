@@ -63,7 +63,7 @@ public class BubbleStation : MonoBehaviourSingleton<BubbleStation>
         bubbleProjectile.AddForce(shootdirection * ShootForce);
         bubbleScript.Oxygen -= OxygenCostPerBubble;
 
-        MyAudioManager.Instance.PlayClip(shootClips);
+        MyAudioManager.Instance?.PlayClip(shootClips);
     }
 
     public Vector2 GetShootDirection()

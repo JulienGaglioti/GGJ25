@@ -125,7 +125,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
         // print("start wave #" + _currentWave);
         // MyAudioManager.Instance.SetMusic(5, 1, 5);
         CheckNewEnemies();
-        MyAudioManager.Instance.PlayClip(newWaveClip);
+        MyAudioManager.Instance?.PlayClip(newWaveClip);
 
         // spawn enemies
         _isSpawingWave = true;

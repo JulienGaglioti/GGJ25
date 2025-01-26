@@ -48,7 +48,8 @@ public class ModeSwitcher : MonoBehaviour
             movement2D.enabled = !_shooting;
             movement2D.SetTargetVelocity(BubbleStation.Instance.GetShootDirection() * ejectForce);
             movement2D.SetVelocity(BubbleStation.Instance.GetShootDirection() * ejectForce);
-            MyAudioManager.Instance.PlayClip(exitBubbleAudioClips);
+            MyAudioManager.Instance?.PlayClip(exitBubbleAudioClips);
+            Player.Instance?.StartSwimAnimation();
         }
     }
 
@@ -69,7 +70,7 @@ public class ModeSwitcher : MonoBehaviour
             bubbleManager.SetCurrentBubble(baseBubble);
             Destroy(otherBubble.gameObject);
             baseBubble.Oxygen += otherBubble.Oxygen;
-
+            Player.Instance?.StartSteerAnimation();
         }
     }
 

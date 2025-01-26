@@ -17,7 +17,7 @@ public class DeathDetector : MonoBehaviour
         if (_bubbleManager.GetCurrentBubble() == null)
         {
             gameObject.SetActive(false);
-            MyAudioManager.Instance.PlayClip(deathClips);
+            MyAudioManager.Instance?.PlayClip(deathClips);
             Instantiate(_deathEffect, transform.position, Quaternion.identity);
         }
     }
