@@ -9,7 +9,7 @@ public class HitCollision : MonoBehaviour
     {
         if(other.TryGetComponent(out Enemy enemy))
         {
-            MyAudioManager.Instance.PlayClip(bubbleExplosionClips);
+            MyAudioManager.Instance?.PlayClip(bubbleExplosionClips);
             Instantiate(enemy.deathEffect, enemy.transform.position, Quaternion.identity);
             enemy.DestroyEnemy();
             bubble.DestroyBubble();

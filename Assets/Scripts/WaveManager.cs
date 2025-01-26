@@ -89,7 +89,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     {
         if(_currentWave > 0)
         {
-            MyAudioManager.Instance.PlayClip(endWaveClip);
+            MyAudioManager.Instance?.PlayClip(endWaveClip);
         }
         
         // print("wait Coroutine " + _currentWave);
