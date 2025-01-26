@@ -49,6 +49,7 @@ public class ModeSwitcher : MonoBehaviour
             movement2D.SetTargetVelocity(BubbleStation.Instance.GetShootDirection() * ejectForce);
             movement2D.SetVelocity(BubbleStation.Instance.GetShootDirection() * ejectForce);
             MyAudioManager.Instance?.PlayClip(exitBubbleAudioClips);
+            GetComponent<WheelAnimator>().StartStaticAnimation();
             Player.Instance?.StartSwimAnimation();
         }
     }
@@ -71,6 +72,7 @@ public class ModeSwitcher : MonoBehaviour
             Destroy(otherBubble.gameObject);
             baseBubble.Oxygen += otherBubble.Oxygen;
             Player.Instance?.StartSteerAnimation();
+            GetComponent<WheelAnimator>().StartSteerAnimation();
             MyAudioManager.Instance?.PlayClip(enterBubbleAudioClips);
         }
     }

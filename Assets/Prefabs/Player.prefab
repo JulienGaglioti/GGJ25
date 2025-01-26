@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2650903959011013840}
   - component: {fileID: 9046863160361969738}
   - component: {fileID: 1671880907672832455}
+  - component: {fileID: 2354611982815690560}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -234,6 +235,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leaveBubbleValue: 3
+  ScoreText: {fileID: 0}
+  score: 0
+  swimAnimation: {fileID: 9100000, guid: 6e3eed54bbe5d7e46aa95b99a2330fe7, type: 2}
+  steerAnimation: {fileID: 9100000, guid: 30de9b2046560ca4c96ad1abe4a086fa, type: 2}
 --- !u!95 &9046863160361969738
 Animator:
   serializedVersion: 7
@@ -244,7 +249,7 @@ Animator:
   m_GameObject: {fileID: 6073280750218506996}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6e3eed54bbe5d7e46aa95b99a2330fe7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 30de9b2046560ca4c96ad1abe4a086fa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -274,3 +279,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7f21e200bd1c63d44bd76394d96c1593, type: 3}
   - {fileID: 8300000, guid: 3e3356ee7ceac40408b6babc6554eb03, type: 3}
   - {fileID: 8300000, guid: 8b9c8e7617a10d7498ff6afa05cd7731, type: 3}
+--- !u!114 &2354611982815690560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6073280750218506996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d9e16b937208741b5c1d0e47553041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheel: {fileID: 0}
+  staticAnimation: {fileID: 9100000, guid: 0fb0a8a162a6a494ab376fcf8643afda, type: 2}
+  steerAnimation: {fileID: 9100000, guid: 2ab9d31b95f49954cadbab025a75804a, type: 2}

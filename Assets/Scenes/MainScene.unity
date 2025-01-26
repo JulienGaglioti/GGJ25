@@ -4924,7 +4924,7 @@ Tilemap:
       - {fileID: -982137655, guid: de3bb4953351bc449832503a3c6b9d5b, type: 3}
       - {fileID: -1538038307, guid: de3bb4953351bc449832503a3c6b9d5b, type: 3}
       - {fileID: -471329131, guid: de3bb4953351bc449832503a3c6b9d5b, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -6, y: 4, z: 0}
@@ -5966,6 +5966,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1449514696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6073280750218506996, guid: 2575101de4316d949afebc1f09037fad, type: 3}
+  m_PrefabInstance: {fileID: 6310265466614692835}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1449514707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449514696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d9e16b937208741b5c1d0e47553041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheel: {fileID: 520662514}
+  staticAnimation: {fileID: 9100000, guid: 0fb0a8a162a6a494ab376fcf8643afda, type: 2}
+  steerAnimation: {fileID: 9100000, guid: 2ab9d31b95f49954cadbab025a75804a, type: 2}
 --- !u!1 &1484392165
 GameObject:
   m_ObjectHideFlags: 0
@@ -7377,7 +7397,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6073280750218506996, guid: 2575101de4316d949afebc1f09037fad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1449514707}
   m_SourcePrefab: {fileID: 100100000, guid: 2575101de4316d949afebc1f09037fad, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
