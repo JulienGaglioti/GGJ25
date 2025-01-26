@@ -85,12 +85,13 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
 
     private IEnumerator WaitCoroutine()
     {
-        print("wait Coroutine " + _currentWave);
+        // print("wait Coroutine " + _currentWave);
+        MyAudioManager.Instance.SetMusic(5, 0, 3);
         yield return new WaitForSeconds(waitTimeAfterWave);
         // print("start wait phase");
         if(_currentWave > 0)
         {
-            print("bubbles");
+            // print("bubbles");
             for (int i = 0; i < bubblesSpawnedPerWave; i++)
             {
                 Transform bubbleSpawnPoint = bubbleSpawnPoints[Random.Range(0, bubbleSpawnPoints.Count)];
@@ -108,7 +109,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
 
     private IEnumerator PreWaveCoroutine()
     {
-        print("pre wave Coroutine " + _currentWave);
+        // print("pre wave Coroutine " + _currentWave);
         yield return new WaitForSeconds(waitTimeBeforeWave);
         CurrentlyPresentDifficulty = 0;
         AddDynamicDifficulty(0);
@@ -118,9 +119,10 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
 
     private IEnumerator WaveCoroutine()
     {       
-        print("wave Coroutine " + _currentWave); 
+        // print("wave Coroutine " + _currentWave); 
         _currentWave++;
         // print("start wave #" + _currentWave);
+        MyAudioManager.Instance.SetMusic(5, 1, 5);
         CheckNewEnemies();
 
         // spawn enemies
