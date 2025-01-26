@@ -86,7 +86,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     private IEnumerator WaitCoroutine()
     {
         // print("wait Coroutine " + _currentWave);
-        MyAudioManager.Instance.SetMusic(5, 0, 3);
+        // MyAudioManager.Instance.SetMusic(5, 0, 3);
         yield return new WaitForSeconds(waitTimeAfterWave);
         // print("start wait phase");
         if(_currentWave > 0)
@@ -122,7 +122,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
         // print("wave Coroutine " + _currentWave); 
         _currentWave++;
         // print("start wave #" + _currentWave);
-        MyAudioManager.Instance.SetMusic(5, 1, 5);
+        // MyAudioManager.Instance.SetMusic(5, 1, 5);
         CheckNewEnemies();
 
         // spawn enemies
@@ -193,6 +193,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     {
         CurrentlyPresentDifficulty += value;
         DynamicPercentage = (float)CurrentlyPresentDifficulty / (float)_currentDifficultyValue;
+        MyAudioManager.Instance.OnDynamicValueUpdate(DynamicPercentage);
     }
 }
 
