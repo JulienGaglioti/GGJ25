@@ -389,6 +389,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2180412320032723226, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
+      propertyPath: DefaultFadeDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4869094823315380102, guid: 1cb6009f4d1e9ec488b52f936fb8fc63, type: 3}
       propertyPath: m_Name
       value: Audio Manager
