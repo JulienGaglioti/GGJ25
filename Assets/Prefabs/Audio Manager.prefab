@@ -475,6 +475,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultFadeDuration: 3
+  MusicLevel0: 0
+  MusicLevel1: 0.25
+  MusicLevel2: 0.5
+  MusicLevel3: 0.75
   MusicSources:
   - {fileID: 4292946455396514638}
   - {fileID: 1362687356188334870}
