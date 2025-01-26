@@ -12,7 +12,7 @@ public class MovementSpriteRotator : MonoBehaviour
     {
         if (movement.x != 0)
         {
-            transform.localScale = new Vector3(1 * (movement.x < 0 ? -1 : 1), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Sign(movement.x), transform.localScale.y, transform.localScale.z);
         }
     }
 }

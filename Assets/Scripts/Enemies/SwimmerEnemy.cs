@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class SwimmerEnemy : Enemy
 {
-    protected override void MoveToTarget(GameObject target)
+    protected override Vector2 MoveToTarget(GameObject target)
     {
-        Rigidbody2D.linearVelocity = (target.transform.position - transform.position).normalized * speed;
+        return Rigidbody2D.linearVelocity = (target.transform.position - transform.position).normalized * speed;
     }
 }

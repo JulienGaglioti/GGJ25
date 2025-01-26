@@ -30,7 +30,11 @@ public abstract class Enemy : MonoBehaviour
     {
         if (_playerObj != null)
         {
-            MoveToTarget(_playerObj);
+            var velocity = MoveToTarget(_playerObj);
+            if (velocity.x == 0) return;
+            var scale = transform.localScale;
+            scale.x = Mathf.Sign(velocity.x);
+            transform.localScale = scale;
         }
     }
 
@@ -45,7 +49,7 @@ public abstract class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    protected abstract void MoveToTarget(GameObject target);
+    protected abstract Vector2 MoveToTarget(GameObject target);
 }
 
 public enum EnemyType
