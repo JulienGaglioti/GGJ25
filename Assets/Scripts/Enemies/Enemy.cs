@@ -20,6 +20,7 @@ public abstract class Enemy : MonoBehaviour
         Rigidbody2D.gravityScale = 0;
         Rigidbody2D.freezeRotation = true;
         RandomizeSpeed();
+        WaveManager.Instance.AddDynamicDifficulty(DifficultyValue);
     }
 
     private void Update()
@@ -33,6 +34,12 @@ public abstract class Enemy : MonoBehaviour
     public void RandomizeSpeed()
     {
         speed *= Random.Range(minSpeedVariation, maxSpeedVariation);
+    }
+
+    public void DestroyEnemy()
+    {
+        WaveManager.Instance.AddDynamicDifficulty(-DifficultyValue);
+        Destroy(gameObject);
     }
 
     protected abstract void MoveToTarget(GameObject target);

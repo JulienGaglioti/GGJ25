@@ -768,7 +768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentBubble: {fileID: 0}
   startingBubble: {fileID: 429838139}
-  DecreaseRate: 0.3
+  DecreaseRate: 0.1
   <MinValue>k__BackingField: 2
 --- !u!114 &1068347400
 MonoBehaviour:
@@ -1219,18 +1219,6 @@ PrefabInstance:
       propertyPath: bubbleManager
       value: 
       objectReference: {fileID: 1068347399}
-    - target: {fileID: 5186998822727896052, guid: 203930c7538e5d740adfefa253852ce1, type: 3}
-      propertyPath: waitTimeAfterWave
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5186998822727896052, guid: 203930c7538e5d740adfefa253852ce1, type: 3}
-      propertyPath: timeBetweenTwoWaves
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5186998822727896052, guid: 203930c7538e5d740adfefa253852ce1, type: 3}
-      propertyPath: bubblesSpawnedPerWave
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7751335225788881310, guid: 203930c7538e5d740adfefa253852ce1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

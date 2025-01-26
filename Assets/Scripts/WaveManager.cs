@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveManager : MonoBehaviour
+public class WaveManager : MonoBehaviourSingleton<WaveManager>
 {
     // 1 1 2 3 5 8 13 21     
     [SerializeField] private float waitTimeBeforeWave = 6f;
     [SerializeField] private float waitTimeAfterWave = 2f;
     [SerializeField] private float timeBetweenEnemiesInWave = 1f;
+
+    [Header("Bubbles")]
     [SerializeField] private int bubblesSpawnedPerWave;
     [SerializeField] private List<Transform> bubbleSpawnPoints;
     [SerializeField] private float bubbleSpawnMinForce;
@@ -27,6 +29,12 @@ public class WaveManager : MonoBehaviour
     private int _remainingDifficultyInWave;
     private int _currentWave;
     private bool _isSpawingWave;
+    private bool _finishedSpawningWave;
+
+    // [Header("Dynamic Difficulty")]
+    public int CurrentlyPresentDifficulty;
+    public float DynamicPercentage;
+
 
     private void Start() 
     {
@@ -39,6 +47,15 @@ public class WaveManager : MonoBehaviour
         _currentDifficultyValue = 1;
         _previousDifficultyValue = 1;
         StartCoroutine(WaitCoroutine());
+    }
+
+    private void Update() 
+    {
+        if(_finishedSpawningWave && DynamicPercentage <= 0.1f)
+        {
+            _finishedSpawningWave = false;
+            StartCoroutine(WaitCoroutine());
+        }
     }
 
     private void SetupEnemies()
@@ -68,26 +85,40 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator WaitCoroutine()
     {
+        print("wait Coroutine " + _currentWave);
+        yield return new WaitForSeconds(waitTimeAfterWave);
         // print("start wait phase");
-        for (int i = 0; i < bubblesSpawnedPerWave; i++)
+        if(_currentWave > 0)
         {
-            Transform bubbleSpawnPoint = bubbleSpawnPoints[Random.Range(0, bubbleSpawnPoints.Count)];
-            Bubble newBubble = Instantiate(bubblePrefab, bubbleSpawnPoint.position, bubblePrefab.transform.rotation);
-            newBubble.Oxygen = Random.Range(bubbleSpawnMinOxygen, bubbleSpawnMaxOxygen);
-            var shootdirection = bubbleSpawnPoint.up;
-            newBubble.AddForce(shootdirection * Random.Range(bubbleSpawnMinForce, bubbleSpawnMaxForce));
-            print("bubble");
-            newBubble.InitializeSpawnedBubble(bubbleManager.DecreaseRate/5f, bubbleManager.MinValue/5f);   
-            yield return new WaitForSeconds(Random.Range(0.3f, 0.7f));
+            print("bubbles");
+            for (int i = 0; i < bubblesSpawnedPerWave; i++)
+            {
+                Transform bubbleSpawnPoint = bubbleSpawnPoints[Random.Range(0, bubbleSpawnPoints.Count)];
+                Bubble newBubble = Instantiate(bubblePrefab, bubbleSpawnPoint.position, bubblePrefab.transform.rotation);
+                newBubble.Oxygen = Random.Range(bubbleSpawnMinOxygen, bubbleSpawnMaxOxygen);
+                var shootdirection = bubbleSpawnPoint.up;
+                newBubble.AddForce(shootdirection * Random.Range(bubbleSpawnMinForce, bubbleSpawnMaxForce));
+                newBubble.InitializeSpawnedBubble(bubbleManager.DecreaseRate/5f, bubbleManager.MinValue/5f);   
+                yield return new WaitForSeconds(Random.Range(0.3f, 0.7f));
+            }  
         }
+        
+        StartCoroutine(PreWaveCoroutine());      
+    }
 
+    private IEnumerator PreWaveCoroutine()
+    {
+        print("pre wave Coroutine " + _currentWave);
         yield return new WaitForSeconds(waitTimeBeforeWave);
+        CurrentlyPresentDifficulty = 0;
+        AddDynamicDifficulty(0);
         StartCoroutine(WaveCoroutine());
     }
 
 
     private IEnumerator WaveCoroutine()
-    {        
+    {       
+        print("wave Coroutine " + _currentWave); 
         _currentWave++;
         // print("start wave #" + _currentWave);
         CheckNewEnemies();
@@ -109,12 +140,10 @@ public class WaveManager : MonoBehaviour
         }
 
         // increase difficulty value after the wave ends
+        _finishedSpawningWave = true;
         int previousValue = _currentDifficultyValue;
         _currentDifficultyValue += _previousDifficultyValue;
         _previousDifficultyValue = previousValue;
-
-        yield return new WaitForSeconds(waitTimeAfterWave);
-        StartCoroutine(WaitCoroutine());
     }
 
     private int SpawnEnemy()
@@ -156,6 +185,12 @@ public class WaveManager : MonoBehaviour
 
         return _walkerSpawnPositions[Random.Range(0, _walkerSpawnPositions.Count)].position 
                 + Vector3.right * Random.Range(-1.5f, 1.5f);
+    }
+
+    public void AddDynamicDifficulty(int value)
+    {
+        CurrentlyPresentDifficulty += value;
+        DynamicPercentage = (float)CurrentlyPresentDifficulty / (float)_currentDifficultyValue;
     }
 }
 

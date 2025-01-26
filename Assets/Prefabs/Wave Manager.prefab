@@ -143,7 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cedea0ab791f874fae1c5fdd8cd202b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenTwoWaves: 5
+  waitTimeBeforeWave: 3
+  waitTimeAfterWave: 1
   timeBetweenEnemiesInWave: 1
   bubblesSpawnedPerWave: 8
   bubbleSpawnPoints:
@@ -180,6 +181,8 @@ MonoBehaviour:
   - {fileID: 5522225522612967664}
   _shooterSpawnPositions: []
   bubbleManager: {fileID: 0}
+  CurrentlyPresentDifficulty: 0
+  DynamicPercentage: 0
 --- !u!1 &1440658629492275957
 GameObject:
   m_ObjectHideFlags: 0
