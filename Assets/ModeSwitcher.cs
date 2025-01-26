@@ -69,7 +69,7 @@ public class ModeSwitcher : MonoBehaviour
             bubbleManager.SetCurrentBubble(baseBubble);
             Destroy(otherBubble.gameObject);
             baseBubble.Oxygen += otherBubble.Oxygen;
-
+            MyAudioManager.Instance.PlayClip(enterBubbleAudioClips);
         }
     }
 

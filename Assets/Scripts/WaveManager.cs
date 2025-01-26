@@ -23,6 +23,7 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
     [SerializeField] private List<Transform> _shooterSpawnPositions;
     [SerializeField] private BubbleManager bubbleManager;
     [SerializeField] private List<AudioClip> newWaveClip;
+    [SerializeField] private List<AudioClip> endWaveClip;
     private List<Enemy> _enemies = new();
     private List<int> _enemyDifficultyValues = new();
     public int CurrentDifficultyValue;
@@ -86,6 +87,11 @@ public class WaveManager : MonoBehaviourSingleton<WaveManager>
 
     private IEnumerator WaitCoroutine()
     {
+        if(_currentWave > 0)
+        {
+            MyAudioManager.Instance.PlayClip(endWaveClip);
+        }
+        
         // print("wait Coroutine " + _currentWave);
         // MyAudioManager.Instance.SetMusic(5, 0, 3);
         yield return new WaitForSeconds(waitTimeAfterWave);
