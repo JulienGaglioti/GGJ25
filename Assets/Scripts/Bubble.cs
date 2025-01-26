@@ -164,9 +164,9 @@ public class Bubble : MonoBehaviour
             gameObject.SetActive(false);
             var bubbleManager = Player.Instance.GetComponent<BubbleManager>();
             var currentBubble = bubbleManager.GetCurrentBubble();
+            currentBubble.Oxygen = 0;
             if (currentBubble == this)
             {
-                currentBubble.Oxygen = 0;
                 bubbleManager.SetCurrentBubble(null);
             }
         }
