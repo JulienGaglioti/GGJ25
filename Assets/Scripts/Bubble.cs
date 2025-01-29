@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bubble : MonoBehaviour
@@ -21,6 +22,7 @@ public class Bubble : MonoBehaviour
     private static readonly int BorderColor = Shader.PropertyToID("_RingColor");
 
     [SerializeField] private float value;
+    [SerializeField] private List<AudioClip> gainBubbleClips;
     public float minValueForFade = 0.0f;
     public float multiplier = 1f;
     public float scaleOffset = 0f;
@@ -131,6 +133,11 @@ public class Bubble : MonoBehaviour
     {
         if ((!otherBubble.CanMerge() || !CanMerge()) && !forced)
             return;
+
+        if (IsPlayerBubble)
+        {
+            MyAudioManager.Instance.PlayClip(gainBubbleClips);
+        }
 
         if (mergePosition == MergePosition.Midpoint)
         {

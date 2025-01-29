@@ -172,6 +172,11 @@ MonoBehaviour:
   priority: 1
   TimeBeforeMergeIsEnabled: 0.6
   value: 1
+  gainBubbleClips:
+  - {fileID: 8300000, guid: 231591e1094d3ef4eb5756f6472aac76, type: 3}
+  - {fileID: 8300000, guid: cdaf2f94cd0653344b329639ea5a3440, type: 3}
+  - {fileID: 8300000, guid: 3ca02fff378984541b5f5247a8843a02, type: 3}
+  - {fileID: 8300000, guid: 3b39dccbf15648742a27e434c11f29aa, type: 3}
   minValueForFade: 0
   multiplier: 0.8
   scaleOffset: 0
